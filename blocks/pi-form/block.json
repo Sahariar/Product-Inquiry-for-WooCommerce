@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "product-inquiry/inquiry-form",
+	"version": "1.0.0",
+	"title": "Product Inquiry Form",
+	"category": "woocommerce",
+	"icon": "email-alt",
+	"description": "Display a product inquiry form for a specific WooCommerce product.",
+	"keywords": ["inquiry", "form", "product", "contact", "woocommerce"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"productId": {
+			"type": "number",
+			"default": 0
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "product-inquiry",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

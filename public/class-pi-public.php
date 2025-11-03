@@ -17,6 +17,10 @@ class Product_Inquiry_Public {
 	}
 
 	public function enqueue_styles() {
+			// Only enqueue on product pages or if shortcode is present
+		if ( ! $this->should_enqueue_assets() ) {
+			return;
+		}
 		if ( ! is_product() ) {
 			return;
 		}
@@ -31,6 +35,10 @@ class Product_Inquiry_Public {
 	}
 
 	public function enqueue_scripts() {
+		// Only enqueue on product pages or if shortcode is present
+		if ( ! $this->should_enqueue_assets() ) {
+			return;
+		}
 		if ( ! is_product() ) {
 			return;
 		}
@@ -146,5 +154,32 @@ class Product_Inquiry_Public {
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Check if assets should be enqueued.
+	 *
+	 * @since    1.0.0
+	 * @return   bool Whether to enqueue assets.
+	 */
+	private function should_enqueue_assets() {
+		global $post;
+
+		// Check if on product page
+		if ( is_product() ) {
+			return true;
+		}
+
+		// Check if shortcode is present in post content
+		if ( $post && has_shortcode( $post->post_content, 'product_inquiry_form' ) ) {
+			return true;
+		}
+
+		// Check if block is present
+		if ( $post && has_block( 'product-inquiry/inquiry-form', $post ) ) {
+			return true;
+		}
+
+		return false;
 	}
 }

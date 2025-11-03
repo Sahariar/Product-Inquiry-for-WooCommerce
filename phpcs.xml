@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<ruleset name="Product Inquiry Plugin">
+    <description>Coding standards for Product Inquiry Plugin</description>
+
+    <!-- What to scan -->
+    <file>.</file>
+
+    <!-- Exclude patterns -->
+    <exclude-pattern>/vendor/*</exclude-pattern>
+    <exclude-pattern>/node_modules/*</exclude-pattern>
+    <exclude-pattern>/tests/*</exclude-pattern>
+    <exclude-pattern>/languages/*</exclude-pattern>
+
+    <!-- Use WordPress-Core instead of WordPress -->
+    <rule ref="WordPress-Core"/>
+
+    <!-- Add security and escaping rules -->
+    <rule ref="WordPress.Security"/>
+    
+    <!-- Add WP-specific rules -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="product-inquiry"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.WP.DeprecatedFunctions"/>
+    <rule ref="WordPress.WP.DeprecatedClasses"/>
+    <rule ref="WordPress.WP.DeprecatedParameters"/>
+    
+    <!-- Prefix enforcement -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="pi"/>
+                <element value="PI"/>
+                <element value="product_inquiry"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- PHP version compatibility -->
+    <config name="testVersion" value="7.4-"/>
+</ruleset>

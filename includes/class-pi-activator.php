@@ -96,17 +96,17 @@ class Product_Inquiry_Activator {
 	}
 	private static function set_default_settings() {
 		$defaults = array(
-			'pi_admin_email'         => get_option( 'admin_email' ),
-			'pi_success_message'     => __( 'Thank you for your inquiry! We will get back to you shortly.', 'product-inquiry' ),
-			'pi_form_display_mode'   => 'popup',
-			'pi_enable_auto_reply'   => 'yes',
-			'pi_auto_reply_subject'  => __( 'We received your inquiry', 'product-inquiry' ),
-			'pi_auto_reply_message'  => sprintf(
+			'pi_admin_email'        => get_option( 'admin_email' ),
+			'pi_success_message'    => __( 'Thank you for your inquiry! We will get back to you shortly.', 'product-inquiry' ),
+			'pi_form_display_mode'  => 'popup',
+			'pi_enable_auto_reply'  => 'yes',
+			'pi_auto_reply_subject' => __( 'We received your inquiry', 'product-inquiry' ),
+			'pi_auto_reply_message' => sprintf(
 				__( "Hello {customer_name},\n\nThank you for your inquiry about {product_name}.\n\nWe have received your message and will respond as soon as possible. If you have any urgent questions, please feel free to contact us at {admin_email}.\n\nBest regards,\n%s", 'product-inquiry' ),
 				get_bloginfo( 'name' )
 			),
-			'pi_button_text'         => __( 'Product Inquiry', 'product-inquiry' ),
-			'pi_button_position'     => 'after_add_to_cart',
+			'pi_button_text'        => __( 'Product Inquiry', 'product-inquiry' ),
+			'pi_button_position'    => 'after_add_to_cart',
 		);
 
 		foreach ( $defaults as $key => $value ) {

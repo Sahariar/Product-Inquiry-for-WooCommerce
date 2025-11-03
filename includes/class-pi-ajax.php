@@ -4,7 +4,7 @@
  *
  * Processes inquiry form submissions via AJAX.
  *
- * @link       https://example.com
+ * @link       https://sahariarkabir.com/
  * @since      1.0.0
  *
  * @package    Product_Inquiry
@@ -18,7 +18,7 @@
  *
  * @package    Product_Inquiry
  * @subpackage Product_Inquiry/includes
- * @author     Your Name <email@example.com>
+ * @author     Sahariar Kabir<sahariark@gmail.com>
  */
 class Product_Inquiry_Ajax {
 

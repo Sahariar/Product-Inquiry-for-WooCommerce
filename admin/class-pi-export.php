@@ -2,7 +2,7 @@
 /**
  * CSV Export functionality for Product Inquiry
  *
- * @link       https://example.com
+ * @link       https://sahariarkabir.com/
  * @since      1.0.0
  *
  * @package    Product_Inquiry
@@ -17,7 +17,7 @@
  *
  * @package    Product_Inquiry
  * @subpackage Product_Inquiry/admin
- * @author     Your Name <email@example.com>
+ * @author     Sahariar Kabir<sahariark@gmail.com>
  */
 class Product_Inquiry_Export {
 
@@ -28,7 +28,7 @@ class Product_Inquiry_Export {
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-    
+
 	private $plugin_name;
 
 	/**
@@ -300,7 +300,7 @@ class Product_Inquiry_Export {
 		$output = fopen( 'php://output', 'w' );
 
 		// Add BOM for UTF-8 (helps Excel recognize encoding)
-		fprintf( $output, chr(0xEF) . chr(0xBB) . chr(0xBF) );
+		fprintf( $output, chr( 0xEF ) . chr( 0xBB ) . chr( 0xBF ) );
 
 		// Write CSV header row
 		fputcsv( $output, $this->get_csv_headers() );

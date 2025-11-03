@@ -15,7 +15,7 @@
  *
  * @package    Product_Inquiry
  * @subpackage Product_Inquiry/admin
- * @author     Your Name <email@example.com>
+ * @author     Sahariar Kabir<sahariark@gmail.com>
  */
 class Product_Inquiry_Settings {
 
@@ -124,13 +124,13 @@ class Product_Inquiry_Settings {
 			),
 
 			array(
-				'name'    => __( 'Form Display Mode', 'product-inquiry' ),
-				'type'    => 'radio',
-				'desc'    => __( 'Choose how the inquiry form should be displayed.', 'product-inquiry' ),
-				'id'      => 'pi_form_display_mode',
-				'default' => 'popup',
-				'options' => array(
-					'popup' => __( 'Popup Modal (recommended)', 'product-inquiry' ),
+				'name'     => __( 'Form Display Mode', 'product-inquiry' ),
+				'type'     => 'radio',
+				'desc'     => __( 'Choose how the inquiry form should be displayed.', 'product-inquiry' ),
+				'id'       => 'pi_form_display_mode',
+				'default'  => 'popup',
+				'options'  => array(
+					'popup'  => __( 'Popup Modal (recommended)', 'product-inquiry' ),
 					'inline' => __( 'Inline Below Product', 'product-inquiry' ),
 				),
 				'desc_tip' => true,
@@ -165,22 +165,22 @@ class Product_Inquiry_Settings {
 			),
 
 			array(
-				'name'    => __( 'Button Text', 'product-inquiry' ),
-				'type'    => 'text',
-				'desc'    => __( 'Text displayed on the inquiry button.', 'product-inquiry' ),
-				'id'      => 'pi_button_text',
-				'default' => __( 'Product Inquiry', 'product-inquiry' ),
-				'css'     => 'min-width:300px;',
+				'name'     => __( 'Button Text', 'product-inquiry' ),
+				'type'     => 'text',
+				'desc'     => __( 'Text displayed on the inquiry button.', 'product-inquiry' ),
+				'id'       => 'pi_button_text',
+				'default'  => __( 'Product Inquiry', 'product-inquiry' ),
+				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
 
 			array(
-				'name'    => __( 'Button Position', 'product-inquiry' ),
-				'type'    => 'select',
-				'desc'    => __( 'Where to display the inquiry button on product pages.', 'product-inquiry' ),
-				'id'      => 'pi_button_position',
-				'default' => 'after_add_to_cart',
-				'options' => array(
+				'name'     => __( 'Button Position', 'product-inquiry' ),
+				'type'     => 'select',
+				'desc'     => __( 'Where to display the inquiry button on product pages.', 'product-inquiry' ),
+				'id'       => 'pi_button_position',
+				'default'  => 'after_add_to_cart',
+				'options'  => array(
 					'before_add_to_cart' => __( 'Before Add to Cart Button', 'product-inquiry' ),
 					'after_add_to_cart'  => __( 'After Add to Cart Button', 'product-inquiry' ),
 					'after_summary'      => __( 'After Product Summary', 'product-inquiry' ),

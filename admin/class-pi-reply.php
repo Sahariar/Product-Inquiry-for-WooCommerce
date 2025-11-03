@@ -2,7 +2,7 @@
 /**
  * Reply functionality for Product Inquiry
  *
- * @link       https://example.com
+ * @link       https://sahariarkabir.com/
  * @since      1.0.0
  *
  * @package    Product_Inquiry
@@ -16,7 +16,7 @@
  *
  * @package    Product_Inquiry
  * @subpackage Product_Inquiry/admin
- * @author     Your Name <email@example.com>
+ * @author     Sahariar Kabir<sahariark@gmail.com>
  */
 class Product_Inquiry_Reply {
 
@@ -131,9 +131,9 @@ class Product_Inquiry_Reply {
 		// Success response
 		wp_send_json_success(
 			array(
-				'message'      => __( 'Reply sent successfully!', 'product-inquiry' ),
-				'reply_count'  => $this->get_reply_count( $inquiry_id ),
-				'last_reply'   => $this->format_last_reply( $inquiry_id ),
+				'message'     => __( 'Reply sent successfully!', 'product-inquiry' ),
+				'reply_count' => $this->get_reply_count( $inquiry_id ),
+				'last_reply'  => $this->format_last_reply( $inquiry_id ),
 			)
 		);
 	}
@@ -164,15 +164,15 @@ class Product_Inquiry_Reply {
 		$product_url   = $product ? $product->get_permalink() : '';
 
 		return array(
-			'inquiry_id'    => $inquiry_id,
-			'product_id'    => $product_id,
-			'product_title' => $product_title,
-			'product_url'   => $product_url,
-			'customer_name' => $name,
+			'inquiry_id'     => $inquiry_id,
+			'product_id'     => $product_id,
+			'product_title'  => $product_title,
+			'product_url'    => $product_url,
+			'customer_name'  => $name,
 			'customer_email' => $email,
 			'customer_phone' => $phone,
-			'message'       => $message,
-			'date'          => get_the_date( 'Y-m-d H:i:s', $inquiry ),
+			'message'        => $message,
+			'date'           => get_the_date( 'Y-m-d H:i:s', $inquiry ),
 		);
 	}
 
@@ -186,7 +186,7 @@ class Product_Inquiry_Reply {
 	 * @return   bool Whether email was sent successfully.
 	 */
 	private function send_reply_email( $inquiry_id, $inquiry_data, $reply_message ) {
-		$admin_email = Product_Inquiry_Settings::get_admin_email();
+		$admin_email  = Product_Inquiry_Settings::get_admin_email();
 		$current_user = wp_get_current_user();
 
 		// Email subject
@@ -503,10 +503,10 @@ class Product_Inquiry_Reply {
 			$this->plugin_name,
 			'piReply',
 			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'pi_reply_nonce' ),
+				'ajax_url'   => admin_url( 'admin-ajax.php' ),
+				'nonce'      => wp_create_nonce( 'pi_reply_nonce' ),
 				'inquiry_id' => get_the_ID(),
-				'messages' => array(
+				'messages'   => array(
 					'sending'      => __( 'Sending reply...', 'product-inquiry' ),
 					'success'      => __( 'Reply sent successfully!', 'product-inquiry' ),
 					'error'        => __( 'Failed to send reply. Please try again.', 'product-inquiry' ),
