@@ -1,14 +1,25 @@
-(function($){
-'use strict'
-const PI_Modal = {
+/**
+ * Product Inquiry Frontend
+ *
+ * Handles modal interactions and AJAX form submission.
+ *
+ * @package Product_Inquiry
+ * @since   1.0.0
+ */
 
-    /**
-     * Initialize mode functionality.
-     */
-    init:function(){
-        this.cacheDom();
-        this.bindEvents();
-    },
+(function($) {
+    'use strict';
+
+    const PI_Modal = {
+
+        /**
+         * Initialize modal functionality.
+         */
+        init: function() {
+            this.cacheDom();
+            this.bindEvents();
+        },
+
         /**
          * Cache DOM elements.
          */
@@ -19,8 +30,12 @@ const PI_Modal = {
             this.$closeButton = $('.pi-modal-close');
             this.$cancelButton = $('.pi-cancel-button');
             this.$form = $('#pi-inquiry-form');
+            this.$submitBtn = $('.pi-submit-button'); // FIXED: Added this line
             this.$messages = $('.pi-form-messages');
             this.$firstInput = $('#pi-name');
+            
+            // Store original button text
+            this.submitBtnText = this.$submitBtn.text();
         },
 
         /**
@@ -29,57 +44,58 @@ const PI_Modal = {
         bindEvents: function() {
             const self = this;
 
-            // Open modal.
+            // Open modal
             this.$openButton.on('click', function(e) {
                 e.preventDefault();
                 self.openModal();
             });
 
-            // Close modal on close button click.
+            // Close modal on close button click
             this.$closeButton.on('click', function(e) {
                 e.preventDefault();
                 self.closeModal();
             });
 
-            // Close modal on cancel button click.
+            // Close modal on cancel button click
             this.$cancelButton.on('click', function(e) {
                 e.preventDefault();
                 self.closeModal();
             });
 
-            // Close modal on overlay click.
+            // Close modal on overlay click
             this.$overlay.on('click', function(e) {
                 if (e.target === this) {
                     self.closeModal();
                 }
             });
 
-            // Close modal on Escape key.
+            // Close modal on Escape key
             $(document).on('keydown', function(e) {
                 if (e.key === 'Escape' && self.$overlay.attr('aria-hidden') === 'false') {
                     self.closeModal();
                 }
             });
 
-            // Handle form submission (basic validation only for now).
+            // Handle form submission
             this.$form.on('submit', function(e) {
                 e.preventDefault();
                 self.handleSubmit();
             });
         },
- /**
+
+        /**
          * Open the modal.
          */
         openModal: function() {
             this.$overlay.attr('aria-hidden', 'false').fadeIn(200);
             this.$modal.attr('tabindex', '-1').focus();
             
-            // Focus first input after animation completes.
+            // Focus first input after animation completes
             setTimeout(() => {
                 this.$firstInput.focus();
             }, 250);
 
-            // Prevent body scroll.
+            // Prevent body scroll
             $('body').css('overflow', 'hidden');
         },
 
@@ -88,23 +104,26 @@ const PI_Modal = {
          */
         closeModal: function() {
             this.$overlay.attr('aria-hidden', 'true').fadeOut(200);
-            this.$openButton.focus(); // Return focus to trigger button.
+            this.$openButton.focus(); // Return focus to trigger button
             
-            // Re-enable body scroll.
+            // Re-enable body scroll
             $('body').css('overflow', '');
             
-            // Clear messages and reset form.
+            // Clear messages and reset form
             this.clearMessages();
             this.$form[0].reset();
         },
 
         /**
-         * Handle form submission (validation only for Feature 1).
+         * Handle form submission via AJAX.
          */
         handleSubmit: function() {
+            const self = this;
+            
+            // Clear previous messages
             this.clearMessages();
 
-            // Basic client-side validation.
+            // Basic client-side validation
             const name = $('#pi-name').val().trim();
             const email = $('#pi-email').val().trim();
             const message = $('#pi-message').val().trim();
@@ -119,9 +138,40 @@ const PI_Modal = {
                 return false;
             }
 
-            // Feature 2 will add AJAX submission here.
-            // For now, just show a placeholder message.
-            this.showMessage('Form validation passed. AJAX submission will be implemented in Feature 2.', 'info');
+            // Disable submit button
+            this.$submitBtn.prop('disabled', true).text('Sending...');
+
+            // Prepare form data
+            const formData = this.$form.serialize() + '&action=pi_submit_inquiry&nonce=' + piData.nonce;
+
+            // Send AJAX request
+            $.ajax({
+                url: piData.ajax_url,
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        self.showMessage(response.data.message, 'success');
+                        self.$form[0].reset();
+                        
+                        // Close modal after 2 seconds
+                        setTimeout(function() {
+                            self.closeModal();
+                        }, 2000);
+                    } else {
+                        self.showMessage(response.data.message, 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                    self.showMessage('An unexpected error occurred. Please try again.', 'error');
+                },
+                complete: function() {
+                    // Re-enable submit button with original text
+                    self.$submitBtn.prop('disabled', false).text(self.submitBtnText);
+                }
+            });
         },
 
         /**
@@ -150,7 +200,8 @@ const PI_Modal = {
             this.$messages.html('').hide();
         }
     };
-    // Initialize on document ready.
+
+    // Initialize on document ready
     $(document).ready(function() {
         PI_Modal.init();
     });

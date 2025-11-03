@@ -45,10 +45,10 @@ class Product_Inquiry_Public {
 
 		wp_localize_script(
 			$this->plugin_name,
-			'productInquiryData',
+			'piData',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'product_inquiry_nonce' ),
+				'nonce'    => wp_create_nonce( 'pi_inquiry_nonce' ),
 			)
 		);
 	}

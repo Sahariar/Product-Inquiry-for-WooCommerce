@@ -18,9 +18,28 @@ class Product_Inquiry {
 
 		$this->load_dependencies();
 		$this->set_locale();
+		
+		// Check WooCommerce before defining hooks.
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
+	}
+
+	/**
+	 * Initialize plugin after all plugins are loaded.
+	 */
+	public function init() {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			add_action( 'admin_notices', array( $this, 'woocommerce_missing_notice' ) );
+			return;
+		}
+
+		// WooCommerce is active, define hooks.
+		$this->define_cpt_hooks();
+		$this->define_ajax_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-		$this->check_woocommerce();
+
+		// NOW run the loader to register all hooks.
+		$this->loader->run();
 	}
 
 	private function load_dependencies() {
@@ -28,6 +47,9 @@ class Product_Inquiry {
 		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-i18n.php';
 		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-pi-admin.php';
 		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'public/class-pi-public.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-cpt.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-ajax.php';
+
 
 		$this->loader = new Product_Inquiry_Loader();
 	}
@@ -37,11 +59,33 @@ class Product_Inquiry {
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 	}
 
+		/**
+	 * Register CPT hooks.
+	 */
+	private function define_cpt_hooks() {
+		$plugin_cpt = new PI_CPT();
+		$this->loader->add_action( 'init', $plugin_cpt, 'register_cpt' );
+	}
+
+	/**
+	 * Register AJAX hooks.
+	 */
+	private function define_ajax_hooks() {
+		$plugin_ajax = new PI_Ajax();
+		
+		// Logged-in users
+		$this->loader->add_action( 'wp_ajax_pi_submit_inquiry', $plugin_ajax, 'submit_inquiry' );
+		
+		// Non-logged-in users
+		$this->loader->add_action( 'wp_ajax_nopriv_pi_submit_inquiry', $plugin_ajax, 'submit_inquiry' );
+	}
+
 	private function define_admin_hooks() {
 		$plugin_admin = new Product_Inquiry_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'show_welcome_notice' );
 	}
 
 	private function define_public_hooks() {
@@ -51,12 +95,6 @@ class Product_Inquiry {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'woocommerce_after_add_to_cart_button', $plugin_public, 'render_inquiry_button' );
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'render_inquiry_modal' );
-	}
-
-	private function check_woocommerce() {
-		if ( ! class_exists( 'WooCommerce' ) ) {
-			$this->loader->add_action( 'admin_notices', $this, 'woocommerce_missing_notice' );
-		}
 	}
 
 	public function woocommerce_missing_notice() {
