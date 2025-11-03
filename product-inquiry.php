@@ -31,6 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'PRODUCT_INQUIRY_VERSION', '1.0.0' );
 define( 'PRODUCT_INQUIRY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRODUCT_INQUIRY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'PRODUCT_INQUIRY_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
  * Declare HPOS compatibility.

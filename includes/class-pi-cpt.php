@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class PI_CPT {
+class Product_Inquiry_CPT {
 
     /**
      * Initialize the CPT.

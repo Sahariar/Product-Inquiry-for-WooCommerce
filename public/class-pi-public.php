@@ -54,13 +54,14 @@ class Product_Inquiry_Public {
 	}
 
 	public function render_inquiry_button() {
+		$button_text = Product_Inquiry_Settings::get_button_text();
 		if ( ! is_product() ) {
 			return;
 		}
 
 		?>
 		<button type="button" class="pi-inquiry-button button alt" id="pi-open-modal">
-			<?php esc_html_e( 'Product Inquiry', 'product-inquiry' ); ?>
+			<?php esc_html_e( $button_text, 'product-inquiry' ); ?>
 		</button>
 		<?php
 	}

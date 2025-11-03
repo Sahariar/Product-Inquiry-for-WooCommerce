@@ -35,7 +35,7 @@ class Product_Inquiry_Activator {
 
 		// Register CPT so rewrite rules are aware of it
 		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-cpt.php';
-		$cpt = new PI_CPT();
+		$cpt = new Product_Inquiry_CPT();
 		$cpt->register_cpt();
 
 		// Flush rewrite rules to register CPT permalinks
@@ -43,6 +43,8 @@ class Product_Inquiry_Activator {
 
 		// Set default plugin options if not already set
 		self::set_default_options();
+		// Set default settings if they don't exist
+		self::set_default_settings();
 
 		// Set activation timestamp
 		if ( ! get_option( 'pi_activated_time' ) ) {
@@ -90,6 +92,27 @@ class Product_Inquiry_Activator {
 		// Disable auto-reply by default (for future feature)
 		if ( ! get_option( 'pi_enable_auto_reply' ) ) {
 			add_option( 'pi_enable_auto_reply', '0' );
+		}
+	}
+	private static function set_default_settings() {
+		$defaults = array(
+			'pi_admin_email'         => get_option( 'admin_email' ),
+			'pi_success_message'     => __( 'Thank you for your inquiry! We will get back to you shortly.', 'product-inquiry' ),
+			'pi_form_display_mode'   => 'popup',
+			'pi_enable_auto_reply'   => 'yes',
+			'pi_auto_reply_subject'  => __( 'We received your inquiry', 'product-inquiry' ),
+			'pi_auto_reply_message'  => sprintf(
+				__( "Hello {customer_name},\n\nThank you for your inquiry about {product_name}.\n\nWe have received your message and will respond as soon as possible. If you have any urgent questions, please feel free to contact us at {admin_email}.\n\nBest regards,\n%s", 'product-inquiry' ),
+				get_bloginfo( 'name' )
+			),
+			'pi_button_text'         => __( 'Product Inquiry', 'product-inquiry' ),
+			'pi_button_position'     => 'after_add_to_cart',
+		);
+
+		foreach ( $defaults as $key => $value ) {
+			if ( false === get_option( $key ) ) {
+				add_option( $key, $value );
+			}
 		}
 	}
 }
