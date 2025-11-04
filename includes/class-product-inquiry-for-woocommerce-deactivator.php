@@ -25,9 +25,9 @@ class Product_Inquiry_Deactivator {
 		flush_rewrite_rules();
 
 		// Clear any scheduled cron jobs (if implemented in future)
-		$timestamp = wp_next_scheduled( 'pi_daily_cleanup' );
+		$timestamp = wp_next_scheduled( 'product_inquiry_for_woocommerce_daily_cleanup' );
 		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, 'pi_daily_cleanup' );
+			wp_unschedule_event( $timestamp, 'product_inquiry_for_woocommerce_daily_cleanup' );
 		}
 
 		// Log deactivation (only in debug mode)

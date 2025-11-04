@@ -33,9 +33,9 @@ class Product_Inquiry_i18n {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
-
+		// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomain -- Required for CodeCanyon/manual installations outside WordPress.org
 		load_plugin_textdomain(
-			'product-inquiry',
+			'product-inquiry-for-woocommerce',
 			false,
 			dirname( plugin_basename( __FILE__ ), 2 ) . '/languages/'
 		);

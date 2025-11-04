@@ -1,0 +1,878 @@
+# Copyright (C) 2025 Sahariar kabir
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Product Inquiry for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Product-Inquiry-for-WooCommerce-main\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-03T15:27:18+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: product-inquiry-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: product-inquiry-for-woocommerce.php
+#: admin/class-product-inquiry-for-woocommerce-admin.php:660
+msgid "Product Inquiry for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: product-inquiry-for-woocommerce.php
+msgid "https://github.com/sahariar/product-inquiry-for-woocommerce"
+msgstr ""
+
+#. Description of the plugin
+#: product-inquiry-for-woocommerce.php
+msgid "Allow customers to send product inquiries from WooCommerce product pages. Admins can manage inquiries in the dashboard."
+msgstr ""
+
+#. Author of the plugin
+#: product-inquiry-for-woocommerce.php
+msgid "Sahariar kabir"
+msgstr ""
+
+#. Author URI of the plugin
+#: product-inquiry-for-woocommerce.php
+msgid "https://sahariarkabir.com/"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:67
+msgid "Are you sure you want to delete this inquiry?"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:68
+msgid "Reply feature will be available in the next update."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:142
+msgid "Title"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:143
+#: admin/class-product-inquiry-for-woocommerce-admin.php:564
+msgid "Product"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:144
+#: admin/class-product-inquiry-for-woocommerce-admin.php:580
+#: admin/class-product-inquiry-for-woocommerce-export.php:377
+msgid "Sender Name"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:145
+#: admin/class-product-inquiry-for-woocommerce-admin.php:584
+msgid "Email"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:146
+#: admin/class-product-inquiry-for-woocommerce-admin.php:546
+#: admin/class-product-inquiry-for-woocommerce-export.php:374
+msgid "Status"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:147
+#: admin/class-product-inquiry-for-woocommerce-export.php:373
+msgid "Date"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:203
+#: admin/class-product-inquiry-for-woocommerce-admin.php:575
+msgid "Product deleted"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:249
+#: admin/class-product-inquiry-for-woocommerce-admin.php:551
+#: admin/class-product-inquiry-for-woocommerce-export.php:436
+msgid "Processed"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:252
+#: admin/class-product-inquiry-for-woocommerce-admin.php:554
+msgid "Replied"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:255
+#: admin/class-product-inquiry-for-woocommerce-admin.php:557
+msgid "Unread"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:296
+msgid "Mark Unread"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:302
+msgid "Mark Processed"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:309
+msgid "Reply"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:357
+#: admin/class-product-inquiry-for-woocommerce-export.php:164
+#: admin/class-product-inquiry-for-woocommerce-export.php:227
+msgid "Invalid request."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:363
+#: admin/class-product-inquiry-for-woocommerce-export.php:171
+#: admin/class-product-inquiry-for-woocommerce-export.php:232
+msgid "Security check failed."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:367
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:388
+#: admin/class-product-inquiry-for-woocommerce-admin.php:629
+msgid "Mark as Processed"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:389
+#: admin/class-product-inquiry-for-woocommerce-admin.php:624
+msgid "Mark as Unread"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:453
+msgid "Inquiry marked as processed."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:454
+msgid "Inquiry marked as unread."
+msgstr ""
+
+#. translators: %d: number of inquiries
+#: admin/class-product-inquiry-for-woocommerce-admin.php:476
+#, php-format
+msgid "%d inquiry marked as processed."
+msgid_plural "%d inquiries marked as processed."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of inquiries
+#: admin/class-product-inquiry-for-woocommerce-admin.php:487
+#, php-format
+msgid "%d inquiry marked as unread."
+msgid_plural "%d inquiries marked as unread."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:511
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:236
+msgid "Inquiry Details"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:520
+msgid "Actions"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:572
+msgid "View Product Page"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:592
+#: admin/class-product-inquiry-for-woocommerce-export.php:380
+msgid "Message"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:600
+msgid "Submitted"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:661
+msgid "is now active! Start receiving customer inquiries on your product pages."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:665
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:44
+msgid "View Inquiries"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-admin.php:668
+#: admin/class-product-inquiry-for-woocommerce-settings.php:370
+msgid "Settings"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:82
+msgid "Export to CSV"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:102
+#: admin/class-product-inquiry-for-woocommerce-export.php:237
+msgid "You do not have permission to export inquiries."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:151
+msgid "Export CSV"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:176
+msgid "You do not have permission to export this inquiry."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:181
+#: admin/class-product-inquiry-for-woocommerce-reply.php:74
+msgid "Invalid inquiry."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:216
+msgid "Export All to CSV"
+msgstr ""
+
+#. translators: 1: Total count, 2: Export limit
+#: admin/class-product-inquiry-for-woocommerce-export.php:248
+#, php-format
+msgid "Cannot export all inquiries. You have %1$d inquiries, but the export limit is %2$d. Please use bulk actions to export specific inquiries or contact support for a custom export solution."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:268
+msgid "No inquiries found to export."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:287
+msgid "No inquiries selected for export."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:372
+msgid "Inquiry ID"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:375
+#: blocks/pi-form/index.js:77
+#: blocks/pi-form/index.js:101
+msgid "Product ID"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:376
+msgid "Product Title"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:378
+msgid "Sender Email"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:379
+msgid "Sender Phone"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:431
+#: admin/class-product-inquiry-for-woocommerce-reply.php:163
+msgid "(Product Deleted)"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-export.php:436
+msgid "New"
+msgstr ""
+
+#. translators: 1: Selected count, 2: Export limit
+#: admin/class-product-inquiry-for-woocommerce-export.php:496
+#, php-format
+msgid "Cannot export %1$d inquiries. The export limit is %2$d. Please select fewer inquiries or use the \"Export All\" button for a complete export."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:63
+msgid "Security verification failed."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:83
+msgid "You do not have permission to reply to this inquiry."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:95
+msgid "Please enter a reply message with at least 10 characters."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:106
+msgid "Failed to retrieve inquiry data."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:117
+msgid "Failed to send reply email. Please check your email configuration."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:134
+#: admin/class-product-inquiry-for-woocommerce-reply.php:511
+msgid "Reply sent successfully!"
+msgstr ""
+
+#. translators: %s: Product title
+#: admin/class-product-inquiry-for-woocommerce-reply.php:195
+#, php-format
+msgid "Response to your inquiry about: %s"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:235
+msgid "Store Admin"
+msgstr ""
+
+#. translators: %s: Customer name
+#: admin/class-product-inquiry-for-woocommerce-reply.php:240
+#, php-format
+msgid "Hello %s,"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:244
+msgid "Thank you for your inquiry. Here is our response:"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:246
+msgid "Our Response"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:250
+msgid "Your Original Message"
+msgstr ""
+
+#. translators: %s: Product title
+#: admin/class-product-inquiry-for-woocommerce-reply.php:254
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:233
+#, php-format
+msgid "Product: %s"
+msgstr ""
+
+#. translators: %s: Product URL
+#: admin/class-product-inquiry-for-woocommerce-reply.php:263
+#, php-format
+msgid "Product Link: %s"
+msgstr ""
+
+#. translators: %s: Date
+#: admin/class-product-inquiry-for-woocommerce-reply.php:274
+#, php-format
+msgid "Date: %s"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:278
+msgid "Your Message:"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:281
+msgid "Contact Information"
+msgstr ""
+
+#. translators: %s: Admin name
+#: admin/class-product-inquiry-for-woocommerce-reply.php:285
+msgid "Best regards,"
+msgstr ""
+
+#. translators: 1: User name, 2: Date
+#: admin/class-product-inquiry-for-woocommerce-reply.php:358
+#, php-format
+msgid "Last reply by %1$s on %2$s"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:374
+msgid "No replies sent yet."
+msgstr ""
+
+#. translators: 1: Reply number, 2: User name
+#: admin/class-product-inquiry-for-woocommerce-reply.php:394
+#, php-format
+msgid "Reply #%1$d by %2$s"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:426
+msgid "Send Reply To:"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:438
+msgid "Your Reply:"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:445
+msgid "Type your reply here..."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:451
+#: admin/class-product-inquiry-for-woocommerce-reply.php:469
+msgid "Send Reply"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:478
+msgid "Reply History"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:510
+msgid "Sending reply..."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:512
+msgid "Failed to send reply. Please try again."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:513
+msgid "Please enter a reply message."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-reply.php:514
+msgid "Are you sure you want to send this reply?"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:69
+msgid "Inquiries"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:100
+msgid "Product Inquiry Settings"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:102
+msgid "Configure how product inquiries work on your store."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:107
+msgid "Admin Email"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:109
+msgid "Email address where inquiry notifications will be sent."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:117
+msgid "Success Message"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:119
+msgid "Message shown to customers after successfully submitting an inquiry."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:121
+#: admin/class-product-inquiry-for-woocommerce-settings.php:262
+#: includes/class-product-inquiry-for-woocommerce-activator.php:100
+msgid "Thank you for your inquiry! We will get back to you shortly."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:127
+msgid "Form Display Mode"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:129
+msgid "Choose how the inquiry form should be displayed."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:133
+msgid "Popup Modal (recommended)"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:134
+msgid "Inline Below Product"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:140
+msgid "Enable Auto-Reply"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:142
+msgid "Automatically send a confirmation email to customers when they submit an inquiry."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:148
+msgid "Auto-Reply Subject"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:150
+msgid "Subject line for the auto-reply email."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:152
+#: admin/class-product-inquiry-for-woocommerce-settings.php:295
+#: includes/class-product-inquiry-for-woocommerce-activator.php:103
+msgid "We received your inquiry"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:158
+msgid "Auto-Reply Message"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:160
+msgid "Email message sent to customers. Use {customer_name}, {product_name}, {admin_email} as placeholders."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:168
+msgid "Button Text"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:170
+msgid "Text displayed on the inquiry button."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:172
+#: admin/class-product-inquiry-for-woocommerce-settings.php:321
+#: includes/class-product-inquiry-for-woocommerce-activator.php:79
+#: includes/class-product-inquiry-for-woocommerce-activator.php:108
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:34
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:51
+msgid "Product Inquiry"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:178
+msgid "Button Position"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:180
+msgid "Where to display the inquiry button on product pages."
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:184
+msgid "Before Add to Cart Button"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:185
+msgid "After Add to Cart Button"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:186
+msgid "After Product Summary"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:198
+msgid "Quick Links"
+msgstr ""
+
+#: admin/class-product-inquiry-for-woocommerce-settings.php:203
+msgid "View All Inquiries"
+msgstr ""
+
+#. translators: Auto-reply email template
+#: admin/class-product-inquiry-for-woocommerce-settings.php:226
+#: admin/class-product-inquiry-for-woocommerce-settings.php:307
+#: includes/class-product-inquiry-for-woocommerce-activator.php:105
+#, php-format
+msgid ""
+"Hello {customer_name},\n"
+"\n"
+"Thank you for your inquiry about {product_name}.\n"
+"\n"
+"We have received your message and will respond as soon as possible. If you have any urgent questions, please feel free to contact us at {admin_email}.\n"
+"\n"
+"Best regards,\n"
+"%s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-activator.php:27
+msgid "Product Inquiry for WooCommerce requires WooCommerce to be installed and active. Please install WooCommerce first."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-activator.php:31
+msgid "Plugin Activation Error"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-activator.php:73
+msgid "Thank you! Your inquiry has been submitted successfully. We will get back to you soon."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:68
+msgid "Security verification failed. Please refresh the page and try again."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:85
+msgid "Invalid product."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:90
+msgid "Please enter a valid name."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:95
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:100
+msgid "Please enter a message with at least 10 characters."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:117
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:97
+msgid "Product not found."
+msgstr ""
+
+#. translators: 1: Product title, 2: Sender name
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:127
+#, php-format
+msgid "%1$s — %2$s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:162
+msgid "Failed to save inquiry. Please try again later."
+msgstr ""
+
+#. translators: %s: Product title
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:225
+#, php-format
+msgid "New Product Inquiry: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:231
+msgid "You have received a new product inquiry."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:234
+#, php-format
+msgid "Product URL: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:238
+#, php-format
+msgid "Name: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:239
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:244
+#, php-format
+msgid "Phone: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:251
+msgid "Message:"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:254
+msgid "Admin Actions"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:256
+#, php-format
+msgid "View/Reply: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-ajax.php:258
+msgid "This is an automated notification from your Product Inquiry plugin."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:31
+msgctxt "Post Type General Name"
+msgid "Product Inquiries"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:32
+msgctxt "Post Type Singular Name"
+msgid "Product Inquiry"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:33
+msgid "Product Inquiries"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:35
+msgid "Inquiry Archives"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:36
+msgid "Inquiry Attributes"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:37
+msgid "All Inquiries"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:38
+msgid "Add New Inquiry"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:39
+msgid "Add New"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:40
+msgid "New Inquiry"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:41
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:43
+msgid "View Inquiry"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:42
+msgid "Update Inquiry"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:45
+msgid "Search Inquiry"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:46
+msgid "Not found"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:47
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-cpt.php:52
+msgid "Product inquiry submissions"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:85
+msgid "Product ID is required."
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:90
+msgid "WooCommerce is not active."
+msgstr ""
+
+#. translators: %s: Product name
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:183
+#: public/class-product-inquiry-for-woocommerce-public.php:102
+#, php-format
+msgid "Inquire About: %s"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:210
+#: public/class-product-inquiry-for-woocommerce-public.php:113
+#: blocks/pi-form/index.js:135
+msgid "Your Name"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:218
+#: blocks/pi-form/index.js:136
+msgid "Enter your name"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:224
+#: public/class-product-inquiry-for-woocommerce-public.php:121
+#: blocks/pi-form/index.js:140
+msgid "Your Email"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:232
+#: blocks/pi-form/index.js:141
+msgid "Enter your email"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:238
+#: public/class-product-inquiry-for-woocommerce-public.php:129
+#: blocks/pi-form/index.js:145
+msgid "Phone Number"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:239
+msgid "(Optional)"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:245
+#: blocks/pi-form/index.js:146
+msgid "Enter your phone number"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:251
+#: public/class-product-inquiry-for-woocommerce-public.php:136
+#: blocks/pi-form/index.js:150
+msgid "Your Message"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:259
+#: blocks/pi-form/index.js:151
+msgid "Enter your inquiry message"
+msgstr ""
+
+#: includes/class-product-inquiry-for-woocommerce-shortcode.php:265
+#: public/class-product-inquiry-for-woocommerce-public.php:144
+#: blocks/pi-form/index.js:155
+msgid "Send Inquiry"
+msgstr ""
+
+#. translators: %s: WooCommerce plugin link
+#: includes/class-pi.php:186
+#, php-format
+msgid "<strong>Product Inquiry</strong> requires WooCommerce to be installed and active. Please install %s first."
+msgstr ""
+
+#: public/class-product-inquiry-for-woocommerce-public.php:95
+msgid "Close inquiry form"
+msgstr ""
+
+#: public/class-product-inquiry-for-woocommerce-public.php:147
+msgid "Cancel"
+msgstr ""
+
+#: blocks/pi-form/index.js:63
+msgid "Product not found. Please enter a valid product ID."
+msgstr ""
+
+#: blocks/pi-form/index.js:73
+msgid "Product Settings"
+msgstr ""
+
+#: blocks/pi-form/index.js:78
+msgid "Enter the WooCommerce product ID to display the inquiry form for."
+msgstr ""
+
+#: blocks/pi-form/index.js:86
+msgid "Show Product Title"
+msgstr ""
+
+#: blocks/pi-form/index.js:87
+msgid "Display the product name above the form."
+msgstr ""
+
+#: blocks/pi-form/index.js:97
+msgid "Product Inquiry Form"
+msgstr ""
+
+#: blocks/pi-form/index.js:98
+msgid "Select a product ID in the block settings to display the inquiry form."
+msgstr ""
+
+#: blocks/pi-form/index.js:106
+msgid "Enter product ID"
+msgstr ""
+
+#: blocks/pi-form/index.js:119
+msgid "Loading product..."
+msgstr ""
+
+#: blocks/pi-form/index.js:128
+msgid "Inquire About:"
+msgstr ""
+
+#: blocks/pi-form/index.js:145
+msgid "Optional"
+msgstr ""
+
+#: blocks/pi-form/index.js:159
+msgid "This is a preview. The form will be functional on the front-end."
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block title"
+msgid "Product Inquiry Form"
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block description"
+msgid "Display a product inquiry form for a specific WooCommerce product."
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block keyword"
+msgid "inquiry"
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block keyword"
+msgid "form"
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block keyword"
+msgid "product"
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block keyword"
+msgid "contact"
+msgstr ""
+
+#: blocks/pi-form/block.json
+msgctxt "block keyword"
+msgid "woocommerce"
+msgstr ""

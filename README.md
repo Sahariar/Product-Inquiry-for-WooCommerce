@@ -48,8 +48,8 @@ A professional WordPress plugin that allows customers to send inquiries about Wo
 ### From GitHub (Development)
 ```bash
 cd wp-content/plugins
-git clone https://github.com/yourusername/product-inquiry.git
-cd product-inquiry
+git clone https://github.com/Sahariar/Product-Inquiry-for-WooCommerce.git
+cd product-inquiry-for-woocommerce
 npm install
 npm run build
 ```
@@ -156,10 +156,10 @@ Use these in auto-reply messages:
 #### Actions
 ```php
 // After inquiry submitted
-do_action( 'pi_inquiry_submitted', $inquiry_id, $inquiry_data );
+do_action( 'product_inquiry_for_woocommerce_inquiry_submitted', $inquiry_id, $inquiry_data );
 
 // After admin reply sent
-do_action( 'pi_inquiry_replied', $inquiry_id, $reply_message, $inquiry_data );
+do_action( 'product_inquiry_for_woocommerce_inquiry_replied', $inquiry_id, $reply_message, $inquiry_data );
 ```
 
 #### Filters
@@ -167,7 +167,7 @@ do_action( 'pi_inquiry_replied', $inquiry_id, $reply_message, $inquiry_data );
 **Inquiry Submission:**
 ```php
 // Modify inquiry data before saving
-add_filter( 'pi_before_create_inquiry', 'custom_inquiry_data', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_before_create_inquiry', 'custom_inquiry_data', 10, 2 );
 function custom_inquiry_data( $inquiry_data, $post_data ) {
     // Add custom meta
     $inquiry_data['meta_input']['_custom_field'] = 'value';
@@ -178,66 +178,66 @@ function custom_inquiry_data( $inquiry_data, $post_data ) {
 **Admin Email:**
 ```php
 // Customize admin notification subject
-add_filter( 'pi_admin_email_subject', 'custom_admin_subject', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_admin_email_subject', 'custom_admin_subject', 10, 2 );
 
 // Customize admin notification body
-add_filter( 'pi_admin_email_body', 'custom_admin_body', 10, 3 );
+add_filter( 'product_inquiry_for_woocommerce_admin_email_body', 'custom_admin_body', 10, 3 );
 
 // Customize admin notification headers
-add_filter( 'pi_admin_email_headers', 'custom_admin_headers', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_admin_email_headers', 'custom_admin_headers', 10, 2 );
 ```
 
 **Auto-Reply Email:**
 ```php
 // Customize auto-reply subject
-add_filter( 'pi_auto_reply_subject', 'custom_autoreply_subject', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_auto_reply_subject', 'custom_autoreply_subject', 10, 2 );
 
 // Customize auto-reply message
-add_filter( 'pi_auto_reply_message', 'custom_autoreply_message', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_auto_reply_message', 'custom_autoreply_message', 10, 2 );
 
 // Customize auto-reply headers
-add_filter( 'pi_auto_reply_headers', 'custom_autoreply_headers', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_auto_reply_headers', 'custom_autoreply_headers', 10, 2 );
 ```
 
 **Reply Email:**
 ```php
 // Customize reply email subject
-add_filter( 'pi_reply_email_subject', 'custom_reply_subject', 10, 3 );
+add_filter( 'product_inquiry_for_woocommerce_reply_email_subject', 'custom_reply_subject', 10, 3 );
 
 // Customize reply email body
-add_filter( 'pi_reply_email_body', 'custom_reply_body', 10, 3 );
+add_filter( 'product_inquiry_for_woocommerce_reply_email_body', 'custom_reply_body', 10, 3 );
 
 // Customize reply email headers
-add_filter( 'pi_reply_email_headers', 'custom_reply_headers', 10, 3 );
+add_filter( 'product_inquiry_for_woocommerce_reply_email_headers', 'custom_reply_headers', 10, 3 );
 ```
 
 **CSV Export:**
 ```php
 // Customize CSV headers
-add_filter( 'pi_csv_export_headers', 'custom_csv_headers' );
+add_filter( 'product_inquiry_for_woocommerce_csv_export_headers', 'custom_csv_headers' );
 
 // Customize CSV row data
-add_filter( 'pi_csv_export_row', 'custom_csv_row', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_csv_export_row', 'custom_csv_row', 10, 2 );
 ```
 
 **Settings:**
 ```php
 // Add custom settings fields
-add_filter( 'pi_inquiry_settings', 'add_custom_settings' );
+add_filter( 'product_inquiry_for_woocommerce_inquiry_settings', 'add_custom_settings' );
 ```
 
 ### Code Examples
 
 #### Log Inquiries to External CRM
 ```php
-add_action( 'pi_inquiry_submitted', 'log_to_crm', 10, 2 );
+add_action( 'product_inquiry_for_woocommerce_inquiry_submitted', 'log_to_crm', 10, 2 );
 function log_to_crm( $inquiry_id, $inquiry_data ) {
-    $api_url = 'https://crm.example.com/api/leads';
+    $aproduct_inquiry_for_woocommerce_url = 'https://crm.example.com/api/leads';
     
-    wp_remote_post( $api_url, array(
+    wp_remote_post( $aproduct_inquiry_for_woocommerce_url, array(
         'body' => json_encode( array(
-            'name'  => get_post_meta( $inquiry_id, '_pi_name', true ),
-            'email' => get_post_meta( $inquiry_id, '_pi_email', true ),
+            'name'  => get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_name', true ),
+            'email' => get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_email', true ),
         ) ),
         'headers' => array( 'Content-Type' => 'application/json' ),
     ) );
@@ -246,29 +246,29 @@ function log_to_crm( $inquiry_id, $inquiry_data ) {
 
 #### Add Custom Field to Export
 ```php
-add_filter( 'pi_csv_export_headers', 'add_ip_column' );
+add_filter( 'product_inquiry_for_woocommerce_csv_export_headers', 'add_ip_column' );
 function add_ip_column( $headers ) {
     $headers[] = 'IP Address';
     return $headers;
 }
 
-add_filter( 'pi_csv_export_row', 'add_ip_data', 10, 2 );
+add_filter( 'product_inquiry_for_woocommerce_csv_export_row', 'add_ip_data', 10, 2 );
 function add_ip_data( $row, $inquiry_id ) {
-    $row[] = get_post_meta( $inquiry_id, '_pi_ip_address', true );
+    $row[] = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_ip_address', true );
     return $row;
 }
 ```
 
 #### Send Slack Notification on New Inquiry
 ```php
-add_action( 'pi_inquiry_submitted', 'notify_slack', 10, 2 );
+add_action( 'product_inquiry_for_woocommerce_inquiry_submitted', 'notify_slack', 10, 2 );
 function notify_slack( $inquiry_id, $inquiry_data ) {
     $webhook_url = 'https://hooks.slack.com/services/YOUR/WEBHOOK/URL';
     
     $message = sprintf(
         'New inquiry from %s about %s',
-        $inquiry_data['meta_input']['_pi_name'],
-        get_the_title( $inquiry_data['meta_input']['_pi_product_id'] )
+        $inquiry_data['meta_input']['product_inquiry_for_woocommerce_name'],
+        get_the_title( $inquiry_data['meta_input']['product_inquiry_for_woocommerce_product_id'] )
     );
     
     wp_remote_post( $webhook_url, array(
@@ -282,14 +282,14 @@ function notify_slack( $inquiry_id, $inquiry_data ) {
 Inquiries are stored as a custom post type: `product_inquiry`
 
 **Post Meta Keys:**
-- `_pi_name` - Customer name
-- `_pi_email` - Customer email
-- `_pi_phone` - Customer phone (optional)
-- `_pi_message` - Inquiry message
-- `_pi_product_id` - Associated product ID
-- `_pi_date` - Submission date
-- `_pi_status` - Status (new, processed, replied)
-- `_pi_replies` - Array of admin replies
+- `_product_inquiry_for_woocommerce_name` - Customer name
+- `_product_inquiry_for_woocommerce_email` - Customer email
+- `_product_inquiry_for_woocommerce_phone` - Customer phone (optional)
+- `_product_inquiry_for_woocommerce_message` - Inquiry message
+- `_product_inquiry_for_woocommerce_product_id` - Associated product ID
+- `_product_inquiry_for_woocommerce_date` - Submission date
+- `_product_inquiry_for_woocommerce_status` - Status (new, processed, replied)
+- `_product_inquiry_for_woocommerce_replies` - Array of admin replies
 
 ## Screenshots
 
@@ -341,9 +341,9 @@ The plugin is translation-ready with full i18n support.
 ### Translate This Plugin
 
 1. Install [Poedit](https://poedit.net/)
-2. Open `languages/product-inquiry.pot`
+2. Open `languages/product-inquiry-for-woocommerce.pot`
 3. Create translation for your language
-4. Save as `product-inquiry-{locale}.po` (e.g., `product-inquiry-es_ES.po`)
+4. Save as `product-inquiry-for-woocommerce-{locale}.po` (e.g., `product-inquiry-for-woocommerce-es_ES.po`)
 5. Poedit will auto-generate the `.mo` file
 6. Upload both files to `wp-content/languages/plugins/`
 
@@ -422,7 +422,7 @@ GNU General Public License for more details.
 
 - **Documentation:** [https://example.com/docs](https://example.com/docs)
 - **Support Forum:** [https://example.com/support](https://example.com/support)
-- **Bug Reports:** [GitHub Issues](https://github.com/yourusername/product-inquiry/issues)
+- **Bug Reports:** [GitHub Issues](https://github.com/yourusername/product-inquiry-for-woocommerce/issues)
 
 ## Show Your Support
 

@@ -82,19 +82,19 @@ class Product_Inquiry_Shortcode {
 
 		// Validate product ID
 		if ( ! $product_id ) {
-			return $this->render_error( __( 'Product ID is required.', 'product-inquiry' ) );
+			return $this->render_error( __( 'Product ID is required.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Check if WooCommerce is active
 		if ( ! function_exists( 'wc_get_product' ) ) {
-			return $this->render_error( __( 'WooCommerce is not active.', 'product-inquiry' ) );
+			return $this->render_error( __( 'WooCommerce is not active.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Get product
 		$product = wc_get_product( $product_id );
 
 		if ( ! $product ) {
-			return $this->render_error( __( 'Product not found.', 'product-inquiry' ) );
+			return $this->render_error( __( 'Product not found.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Enqueue required assets
@@ -141,7 +141,7 @@ class Product_Inquiry_Shortcode {
 		// Enqueue CSS
 		wp_enqueue_style(
 			$this->plugin_name . '-public',
-			plugin_dir_url( __DIR__ ) . 'public/css/product-inquiry-public.css',
+			plugin_dir_url( __DIR__ ) . 'public/css/product-inquiry-for-woocommerce-public.css',
 			array(),
 			$this->version,
 			'all'
@@ -150,7 +150,7 @@ class Product_Inquiry_Shortcode {
 		// Enqueue JS
 		wp_enqueue_script(
 			$this->plugin_name . '-public',
-			plugin_dir_url( __DIR__ ) . 'public/js/product-inquiry-public.js',
+			plugin_dir_url( __DIR__ ) . 'public/js/product-inquiry-for-woocommerce-public.js',
 			array( 'jquery' ),
 			$this->version,
 			true
@@ -180,7 +180,7 @@ class Product_Inquiry_Shortcode {
 				<?php
 				printf(
 					/* translators: %s: Product name */
-					esc_html__( 'Inquire About: %s', 'product-inquiry' ),
+					esc_html__( 'Inquire About: %s', 'product-inquiry-for-woocommerce' ),
 					esc_html( $product->get_name() )
 				);
 				?>
@@ -207,7 +207,7 @@ class Product_Inquiry_Shortcode {
 
 				<div class="pi-form-row">
 					<label for="pi_name_<?php echo esc_attr( $product_id ); ?>">
-						<?php esc_html_e( 'Your Name', 'product-inquiry' ); ?>
+						<?php esc_html_e( 'Your Name', 'product-inquiry-for-woocommerce' ); ?>
 						<span class="required">*</span>
 					</label>
 					<input 
@@ -215,13 +215,13 @@ class Product_Inquiry_Shortcode {
 						id="pi_name_<?php echo esc_attr( $product_id ); ?>" 
 						name="name" 
 						required
-						placeholder="<?php esc_attr_e( 'Enter your name', 'product-inquiry' ); ?>"
+						placeholder="<?php esc_attr_e( 'Enter your name', 'product-inquiry-for-woocommerce' ); ?>"
 					>
 				</div>
 
 				<div class="pi-form-row">
 					<label for="pi_email_<?php echo esc_attr( $product_id ); ?>">
-						<?php esc_html_e( 'Your Email', 'product-inquiry' ); ?>
+						<?php esc_html_e( 'Your Email', 'product-inquiry-for-woocommerce' ); ?>
 						<span class="required">*</span>
 					</label>
 					<input 
@@ -229,26 +229,26 @@ class Product_Inquiry_Shortcode {
 						id="pi_email_<?php echo esc_attr( $product_id ); ?>" 
 						name="email" 
 						required
-						placeholder="<?php esc_attr_e( 'Enter your email', 'product-inquiry' ); ?>"
+						placeholder="<?php esc_attr_e( 'Enter your email', 'product-inquiry-for-woocommerce' ); ?>"
 					>
 				</div>
 
 				<div class="pi-form-row">
 					<label for="pi_phone_<?php echo esc_attr( $product_id ); ?>">
-						<?php esc_html_e( 'Phone Number', 'product-inquiry' ); ?>
-						<span class="optional"><?php esc_html_e( '(Optional)', 'product-inquiry' ); ?></span>
+						<?php esc_html_e( 'Phone Number', 'product-inquiry-for-woocommerce' ); ?>
+						<span class="optional"><?php esc_html_e( '(Optional)', 'product-inquiry-for-woocommerce' ); ?></span>
 					</label>
 					<input 
 						type="tel" 
 						id="pi_phone_<?php echo esc_attr( $product_id ); ?>" 
 						name="phone"
-						placeholder="<?php esc_attr_e( 'Enter your phone number', 'product-inquiry' ); ?>"
+						placeholder="<?php esc_attr_e( 'Enter your phone number', 'product-inquiry-for-woocommerce' ); ?>"
 					>
 				</div>
 
 				<div class="pi-form-row">
 					<label for="pi_message_<?php echo esc_attr( $product_id ); ?>">
-						<?php esc_html_e( 'Your Message', 'product-inquiry' ); ?>
+						<?php esc_html_e( 'Your Message', 'product-inquiry-for-woocommerce' ); ?>
 						<span class="required">*</span>
 					</label>
 					<textarea 
@@ -256,13 +256,13 @@ class Product_Inquiry_Shortcode {
 						name="message" 
 						rows="5" 
 						required
-						placeholder="<?php esc_attr_e( 'Enter your inquiry message', 'product-inquiry' ); ?>"
+						placeholder="<?php esc_attr_e( 'Enter your inquiry message', 'product-inquiry-for-woocommerce' ); ?>"
 					></textarea>
 				</div>
 
 				<div class="pi-form-actions">
 					<button type="submit" class="button pi-submit-btn">
-						<?php esc_html_e( 'Send Inquiry', 'product-inquiry' ); ?>
+						<?php esc_html_e( 'Send Inquiry', 'product-inquiry-for-woocommerce' ); ?>
 					</button>
 					<span class="pi-spinner"></span>
 				</div>

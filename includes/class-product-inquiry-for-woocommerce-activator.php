@@ -26,15 +26,15 @@ class Product_Inquiry_Activator {
 			wp_die(
 				esc_html__(
 					'Product Inquiry for WooCommerce requires WooCommerce to be installed and active. Please install WooCommerce first.',
-					'product-inquiry'
+					'product-inquiry-for-woocommerce'
 				),
-				esc_html__( 'Plugin Activation Error', 'product-inquiry' ),
+				esc_html__( 'Plugin Activation Error', 'product-inquiry-for-woocommerce' ),
 				array( 'back_link' => true )
 			);
 		}
 
 		// Register CPT so rewrite rules are aware of it
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-cpt.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-cpt.php';
 		$cpt = new Product_Inquiry_CPT();
 		$cpt->register_cpt();
 
@@ -70,13 +70,13 @@ class Product_Inquiry_Activator {
 		if ( ! get_option( 'pi_success_message' ) ) {
 			add_option(
 				'pi_success_message',
-				__( 'Thank you! Your inquiry has been submitted successfully. We will get back to you soon.', 'product-inquiry' )
+				__( 'Thank you! Your inquiry has been submitted successfully. We will get back to you soon.', 'product-inquiry-for-woocommerce' )
 			);
 		}
 
 		// Default button text
 		if ( ! get_option( 'pi_button_text' ) ) {
-			add_option( 'pi_button_text', __( 'Product Inquiry', 'product-inquiry' ) );
+			add_option( 'pi_button_text', __( 'Product Inquiry', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Default display mode (modal or inline)
@@ -97,15 +97,16 @@ class Product_Inquiry_Activator {
 	private static function set_default_settings() {
 		$defaults = array(
 			'pi_admin_email'        => get_option( 'admin_email' ),
-			'pi_success_message'    => __( 'Thank you for your inquiry! We will get back to you shortly.', 'product-inquiry' ),
+			'pi_success_message'    => __( 'Thank you for your inquiry! We will get back to you shortly.', 'product-inquiry-for-woocommerce' ),
 			'pi_form_display_mode'  => 'popup',
 			'pi_enable_auto_reply'  => 'yes',
-			'pi_auto_reply_subject' => __( 'We received your inquiry', 'product-inquiry' ),
+			'pi_auto_reply_subject' => __( 'We received your inquiry', 'product-inquiry-for-woocommerce' ),
+			/* translators: %s: Site name. Placeholders {customer_name}, {product_name}, {admin_email} are replaced at runtime. */
 			'pi_auto_reply_message' => sprintf(
-				__( "Hello {customer_name},\n\nThank you for your inquiry about {product_name}.\n\nWe have received your message and will respond as soon as possible. If you have any urgent questions, please feel free to contact us at {admin_email}.\n\nBest regards,\n%s", 'product-inquiry' ),
+				__( "Hello {customer_name},\n\nThank you for your inquiry about {product_name}.\n\nWe have received your message and will respond as soon as possible. If you have any urgent questions, please feel free to contact us at {admin_email}.\n\nBest regards,\n%s", 'product-inquiry-for-woocommerce' ),
 				get_bloginfo( 'name' )
 			),
-			'pi_button_text'        => __( 'Product Inquiry', 'product-inquiry' ),
+			'pi_button_text'        => __( 'Product Inquiry', 'product-inquiry-for-woocommerce' ),
 			'pi_button_position'    => 'after_add_to_cart',
 		);
 

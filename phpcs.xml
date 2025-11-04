@@ -21,7 +21,7 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="product-inquiry"/>
+                <element value="product-inquiry-for-woocommerce"/>
             </property>
         </properties>
     </rule>

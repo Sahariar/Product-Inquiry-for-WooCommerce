@@ -24,15 +24,15 @@
          * Cache DOM elements.
          */
         cacheDom: function() {
-            this.$overlay = $('#pi-modal-overlay');
-            this.$modal = $('#pi-modal');
-            this.$openButton = $('#pi-open-modal');
-            this.$closeButton = $('.pi-modal-close');
-            this.$cancelButton = $('.pi-cancel-button');
-            this.$form = $('#pi-inquiry-form');
-            this.$submitBtn = $('.pi-submit-button'); // FIXED: Added this line
-            this.$messages = $('.pi-form-messages');
-            this.$firstInput = $('#pi-name');
+            this.$overlay = $('#product-inquiry-for-woocommerce-modal-overlay');
+            this.$modal = $('#product-inquiry-for-woocommerce-modal');
+            this.$openButton = $('#product-inquiry-for-woocommerce-open-modal');
+            this.$closeButton = $('.product-inquiry-for-woocommerce-modal-close');
+            this.$cancelButton = $('.product-inquiry-for-woocommerce-cancel-button');
+            this.$form = $('#product-inquiry-for-woocommerce-inquiry-form');
+            this.$submitBtn = $('.product-inquiry-for-woocommerce-submit-button'); // FIXED: Added this line
+            this.$messages = $('.product-inquiry-for-woocommerce-form-messages');
+            this.$firstInput = $('#product-inquiry-for-woocommerce-name');
             
             // Store original button text
             this.submitBtnText = this.$submitBtn.text();
@@ -124,9 +124,9 @@
             this.clearMessages();
 
             // Basic client-side validation
-            const name = $('#pi-name').val().trim();
-            const email = $('#pi-email').val().trim();
-            const message = $('#pi-message').val().trim();
+            const name = $('#product-inquiry-for-woocommerce-name').val().trim();
+            const email = $('#product-inquiry-for-woocommerce-email').val().trim();
+            const message = $('#product-inquiry-for-woocommerce-message').val().trim();
 
             if (!name || !email || !message) {
                 this.showMessage('Please fill in all required fields.', 'error');
@@ -142,11 +142,13 @@
             this.$submitBtn.prop('disabled', true).text('Sending...');
 
             // Prepare form data
-            const formData = this.$form.serialize() + '&action=pi_submit_inquiry&nonce=' + piData.nonce;
-
+            const formData = this.$form.serialize() + '&action=product_inquiry_for_woocommerce_submit_inquiry';
+              // DEBUG: Log what we're sending
+        console.log('Form Data:', formData);
+        console.log('AJAX URL:', productInquiryForWooCommerceData.ajax_url);
             // Send AJAX request
             $.ajax({
-                url: piData.ajax_url,
+                url: productInquiryForWooCommerceData.ajax_url,
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
@@ -164,7 +166,7 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
+                    console.error('AJAX Error:', status, error , xhr);
                     self.showMessage('An unexpected error occurred. Please try again.', 'error');
                 },
                 complete: function() {
@@ -186,7 +188,7 @@
          * Display a message to the user.
          */
         showMessage: function(message, type) {
-            const alertClass = type === 'error' ? 'pi-error' : type === 'success' ? 'pi-success' : 'pi-info';
+            const alertClass = type === 'error' ? 'product-inquiry-for-woocommerce-error' : type === 'success' ? 'product-inquiry-for-woocommerce-success' : 'product-inquiry-for-woocommerce-info';
             
             this.$messages
                 .html('<p class="' + alertClass + '">' + message + '</p>')

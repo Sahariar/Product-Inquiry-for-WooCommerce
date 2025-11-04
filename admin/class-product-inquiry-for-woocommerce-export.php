@@ -79,7 +79,7 @@ class Product_Inquiry_Export {
 	 * @return   array Modified bulk actions.
 	 */
 	public function add_bulk_export_action( $actions ) {
-		$actions['export_csv'] = __( 'Export to CSV', 'product-inquiry' );
+		$actions['export_csv'] = __( 'Export to CSV', 'product-inquiry-for-woocommerce' );
 		return $actions;
 	}
 
@@ -99,7 +99,7 @@ class Product_Inquiry_Export {
 
 		// Check capabilities
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You do not have permission to export inquiries.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'You do not have permission to export inquiries.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Limit export size
@@ -148,7 +148,7 @@ class Product_Inquiry_Export {
 		$actions['export'] = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $export_url ),
-			__( 'Export CSV', 'product-inquiry' )
+			__( 'Export CSV', 'product-inquiry-for-woocommerce' )
 		);
 
 		return $actions;
@@ -161,24 +161,24 @@ class Product_Inquiry_Export {
 	 */
 	public function handle_single_export() {
 		if ( ! isset( $_GET['inquiry_id'] ) || ! isset( $_GET['_wpnonce'] ) ) {
-			wp_die( esc_html__( 'Invalid request.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'Invalid request.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		$inquiry_id = absint( $_GET['inquiry_id'] );
 
 		// Verify nonce
-		if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'pi_export_single_' . $inquiry_id ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'product-inquiry' ) );
+		if ( ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'pi_export_single_' . $inquiry_id ) ) {
+			wp_die( esc_html__( 'Security check failed.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Check capabilities
 		if ( ! current_user_can( 'edit_post', $inquiry_id ) ) {
-			wp_die( esc_html__( 'You do not have permission to export this inquiry.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'You do not have permission to export this inquiry.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Verify post type
 		if ( 'product_inquiry' !== get_post_type( $inquiry_id ) ) {
-			wp_die( esc_html__( 'Invalid inquiry.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'Invalid inquiry.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Export single inquiry
@@ -213,7 +213,7 @@ class Product_Inquiry_Export {
 		printf(
 			'<a href="%s" class="button" style="margin: 1px 8px 0 0;">%s</a>',
 			esc_url( $export_url ),
-			esc_html__( 'Export All to CSV', 'product-inquiry' )
+			esc_html__( 'Export All to CSV', 'product-inquiry-for-woocommerce' )
 		);
 	}
 
@@ -224,17 +224,17 @@ class Product_Inquiry_Export {
 	 */
 	public function handle_export_all() {
 		if ( ! isset( $_GET['_wpnonce'] ) ) {
-			wp_die( esc_html__( 'Invalid request.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'Invalid request.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Verify nonce
-		if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'pi_export_all' ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'product-inquiry' ) );
-		}
+			if ( ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'pi_export_all' ) ) {
+				wp_die( esc_html__( 'Security check failed.', 'product-inquiry-for-woocommerce' ) );
+			}
 
 		// Check capabilities
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You do not have permission to export inquiries.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'You do not have permission to export inquiries.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Get total count
@@ -243,11 +243,13 @@ class Product_Inquiry_Export {
 
 		if ( $count > $this->max_export_limit ) {
 			wp_die(
-				sprintf(
-					/* translators: 1: Total count, 2: Export limit */
-					esc_html__( 'Cannot export all inquiries. You have %1$d inquiries, but the export limit is %2$d. Please use bulk actions to export specific inquiries or contact support for a custom export solution.', 'product-inquiry' ),
-					$count,
-					$this->max_export_limit
+				esc_html(
+					sprintf(
+						/* translators: 1: Total count, 2: Export limit */
+						__( 'Cannot export all inquiries. You have %1$d inquiries, but the export limit is %2$d. Please use bulk actions to export specific inquiries or contact support for a custom export solution.', 'product-inquiry-for-woocommerce' ),
+						$count,
+						$this->max_export_limit
+					)
 				)
 			);
 		}
@@ -265,7 +267,7 @@ class Product_Inquiry_Export {
 		$inquiry_ids = get_posts( $args );
 
 		if ( empty( $inquiry_ids ) ) {
-			wp_die( esc_html__( 'No inquiries found to export.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'No inquiries found to export.', 'product-inquiry-for-woocommerce' ) );
 		}
 
 		// Export all inquiries
@@ -284,11 +286,14 @@ class Product_Inquiry_Export {
 	 */
 	private function export_inquiries( $inquiry_ids ) {
 		if ( empty( $inquiry_ids ) ) {
-			wp_die( esc_html__( 'No inquiries selected for export.', 'product-inquiry' ) );
+			wp_die( esc_html__( 'No inquiries selected for export.', 'product-inquiry-for-woocommerce' ) );
 		}
 
-		// Set execution time limit for large exports
-		set_time_limit( 300 ); // 5 minutes
+		// Set execution time limit for large exports (if allowed by host)
+		if ( function_exists( 'set_time_limit' ) && ! ini_get( 'safe_mode' ) ) {
+			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_set_time_limit
+			set_time_limit( 300 ); // 5 minutes
+		}
 
 		// Generate filename
 		$filename = $this->generate_filename( count( $inquiry_ids ) );
@@ -317,8 +322,8 @@ class Product_Inquiry_Export {
 			}
 			flush();
 		}
-
 		// Close output stream
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		fclose( $output );
 
 		exit;
@@ -369,15 +374,15 @@ class Product_Inquiry_Export {
 	 */
 	private function get_csv_headers() {
 		$headers = array(
-			__( 'Inquiry ID', 'product-inquiry' ),
-			__( 'Date', 'product-inquiry' ),
-			__( 'Status', 'product-inquiry' ),
-			__( 'Product ID', 'product-inquiry' ),
-			__( 'Product Title', 'product-inquiry' ),
-			__( 'Sender Name', 'product-inquiry' ),
-			__( 'Sender Email', 'product-inquiry' ),
-			__( 'Sender Phone', 'product-inquiry' ),
-			__( 'Message', 'product-inquiry' ),
+			__( 'Inquiry ID', 'product-inquiry-for-woocommerce' ),
+			__( 'Date', 'product-inquiry-for-woocommerce' ),
+			__( 'Status', 'product-inquiry-for-woocommerce' ),
+			__( 'Product ID', 'product-inquiry-for-woocommerce' ),
+			__( 'Product Title', 'product-inquiry-for-woocommerce' ),
+			__( 'Sender Name', 'product-inquiry-for-woocommerce' ),
+			__( 'Sender Email', 'product-inquiry-for-woocommerce' ),
+			__( 'Sender Phone', 'product-inquiry-for-woocommerce' ),
+			__( 'Message', 'product-inquiry-for-woocommerce' ),
 		);
 
 		return apply_filters( 'pi_csv_export_headers', $headers );
@@ -414,12 +419,12 @@ class Product_Inquiry_Export {
 		}
 
 		// Get meta data
-		$product_id = get_post_meta( $inquiry_id, '_pi_product_id', true );
-		$name       = get_post_meta( $inquiry_id, '_pi_name', true );
-		$email      = get_post_meta( $inquiry_id, '_pi_email', true );
-		$phone      = get_post_meta( $inquiry_id, '_pi_phone', true );
-		$message    = get_post_meta( $inquiry_id, '_pi_message', true );
-		$status     = get_post_meta( $inquiry_id, '_pi_status', true );
+		$product_id = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_product_id', true );
+		$name       = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_name', true );
+		$email      = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_email', true );
+		$phone      = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_phone', true );
+		$message    = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_message', true );
+		$status     = get_post_meta( $inquiry_id, 'product_inquiry_for_woocommerce_status', true );
 
 		// Get product title
 		$product_title = '';
@@ -428,12 +433,12 @@ class Product_Inquiry_Export {
 			if ( $product ) {
 				$product_title = $product->get_name();
 			} else {
-				$product_title = __( '(Product Deleted)', 'product-inquiry' );
+				$product_title = __( '(Product Deleted)', 'product-inquiry-for-woocommerce' );
 			}
 		}
 
 		// Format status
-		$status_label = 'new' === $status ? __( 'New', 'product-inquiry' ) : __( 'Processed', 'product-inquiry' );
+		$status_label = 'new' === $status ? __( 'New', 'product-inquiry-for-woocommerce' ) : __( 'Processed', 'product-inquiry-for-woocommerce' );
 
 		// Format date
 		$date = get_the_date( 'Y-m-d H:i:s', $inquiry );
@@ -478,28 +483,33 @@ class Product_Inquiry_Export {
 	 *
 	 * @since    1.0.0
 	 */
-	public function display_export_notices() {
-		$screen = get_current_screen();
+public function display_export_notices() {
+    $screen = get_current_screen();
 
-		if ( ! $screen || 'edit-product_inquiry' !== $screen->id ) {
-			return;
-		}
+    if ( ! $screen || 'edit-product_inquiry' !== $screen->id ) {
+        return;
+    }
 
-		if ( isset( $_GET['pi_export_error'] ) && 'too_many' === $_GET['pi_export_error'] ) {
-			$count = isset( $_GET['count'] ) ? absint( $_GET['count'] ) : 0;
-			$limit = isset( $_GET['limit'] ) ? absint( $_GET['limit'] ) : $this->max_export_limit;
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Displaying error message from redirect, no action taken
+    if ( isset( $_GET['pi_export_error'] ) && 'too_many' === $_GET['pi_export_error'] ) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading safe parameters for display only
+        $count = isset( $_GET['count'] ) ? absint( $_GET['count'] ) : 0;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading safe parameters for display only
+        $limit = isset( $_GET['limit'] ) ? absint( $_GET['limit'] ) : $this->max_export_limit;
 
-			printf(
-				'<div class="notice notice-error is-dismissible"><p>%s</p></div>',
-				sprintf(
-					/* translators: 1: Selected count, 2: Export limit */
-					esc_html__( 'Cannot export %1$d inquiries. The export limit is %2$d. Please select fewer inquiries or use the "Export All" button for a complete export.', 'product-inquiry' ),
-					$count,
-					$limit
-				)
-			);
-		}
-	}
+        printf(
+            '<div class="notice notice-error is-dismissible"><p>%s</p></div>',
+            esc_html(
+                sprintf(
+                    /* translators: 1: Selected count, 2: Export limit */
+                    __( 'Cannot export %1$d inquiries. The export limit is %2$d. Please select fewer inquiries or use the "Export All" button for a complete export.', 'product-inquiry-for-woocommerce' ),
+                    $count,
+                    $limit
+                )
+            )
+        );
+    }
+}
 
 	/**
 	 * Get export statistics.

@@ -16,7 +16,7 @@ class Product_Inquiry {
 
 	public function __construct() {
 		$this->version     = PRODUCT_INQUIRY_VERSION;
-		$this->plugin_name = 'product-inquiry';
+		$this->plugin_name = 'product-inquiry-for-woocommerce';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -45,16 +45,16 @@ class Product_Inquiry {
 	}
 
 	private function load_dependencies() {
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-loader.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-i18n.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-cpt.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-ajax.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-shortcode.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-pi-admin.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-pi-settings.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-pi-reply.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-pi-export.php';
-		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'public/class-pi-public.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-loader.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-i18n.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-cpt.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-ajax.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-shortcode.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-product-inquiry-for-woocommerce-admin.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-product-inquiry-for-woocommerce-settings.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-product-inquiry-for-woocommerce-reply.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'admin/class-product-inquiry-for-woocommerce-export.php';
+		require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'public/class-product-inquiry-for-woocommerce-public.php';
 
 		$this->loader = new Product_Inquiry_Loader();
 	}
@@ -79,10 +79,10 @@ class Product_Inquiry {
 		$plugin_ajax = new Product_Inquiry_Ajax( $this->get_plugin_name(), $this->get_version() );
 
 		// Logged-in users
-		$this->loader->add_action( 'wp_ajax_pi_submit_inquiry', $plugin_ajax, 'submit_inquiry' );
+		$this->loader->add_action( 'wp_ajax_product_inquiry_for_woocommerce_submit_inquiry', $plugin_ajax, 'submit_inquiry' );
 
 		// Non-logged-in users
-		$this->loader->add_action( 'wp_ajax_nopriv_pi_submit_inquiry', $plugin_ajax, 'submit_inquiry' );
+		$this->loader->add_action( 'wp_ajax_nopriv_product_inquiry_for_woocommerce_submit_inquiry', $plugin_ajax, 'submit_inquiry' );
 	}
 
 	private function define_admin_hooks() {
@@ -103,8 +103,8 @@ class Product_Inquiry {
 		$this->loader->add_filter( 'post_row_actions', $plugin_admin, 'modify_row_actions', 10, 2 );
 
 		// Status change handlers
-		$this->loader->add_action( 'admin_post_pi_mark_processed', $plugin_admin, 'handle_mark_processed' );
-		$this->loader->add_action( 'admin_post_pi_mark_unprocessed', $plugin_admin, 'handle_mark_unprocessed' );
+		$this->loader->add_action( 'admin_post_product_inquiry_for_woocommerce_mark_processed', $plugin_admin, 'handle_mark_processed' );
+		$this->loader->add_action( 'admin_post_product_inquiry_for_woocommerce_mark_unprocessed', $plugin_admin, 'handle_mark_unprocessed' );
 
 		// Bulk actions
 		$this->loader->add_filter( 'bulk_actions-edit-product_inquiry', $plugin_admin, 'register_bulk_actions' );
@@ -127,8 +127,8 @@ class Product_Inquiry {
 		$this->loader->add_filter( 'bulk_actions-edit-product_inquiry', $plugin_export, 'add_bulk_export_action' );
 		$this->loader->add_filter( 'handle_bulk_actions-edit-product_inquiry', $plugin_export, 'handle_bulk_export', 10, 3 );
 		$this->loader->add_filter( 'post_row_actions', $plugin_export, 'add_row_export_action', 10, 2 );
-		$this->loader->add_action( 'admin_action_pi_export_single', $plugin_export, 'handle_single_export' );
-		$this->loader->add_action( 'admin_action_pi_export_all', $plugin_export, 'handle_export_all' );
+		$this->loader->add_action( 'admin_action_product_inquiry_for_woocommerce_export_single', $plugin_export, 'handle_single_export' );
+		$this->loader->add_action( 'admin_action_product_inquiry_for_woocommerce_export_all', $plugin_export, 'handle_export_all' );
 		$this->loader->add_action( 'manage_posts_extra_tablenav', $plugin_export, 'add_export_all_button' );
 		$this->loader->add_action( 'admin_notices', $plugin_export, 'display_export_notices' );
 
@@ -136,7 +136,7 @@ class Product_Inquiry {
 		$plugin_reply = new Product_Inquiry_Reply( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_reply, 'add_reply_metaboxes' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_reply, 'enqueue_reply_scripts' );
-		$this->loader->add_action( 'wp_ajax_pi_send_reply', $plugin_reply, 'handle_ajax_reply' );
+		$this->loader->add_action( 'wp_ajax_product_inquiry_for_woocommerce_send_reply', $plugin_reply, 'handle_ajax_reply' );
 	}
 
 	private function define_public_hooks() {
@@ -171,7 +171,7 @@ class Product_Inquiry {
 				echo wp_kses_post(
 					sprintf(
 						/* translators: %s: WooCommerce plugin link */
-						__( '<strong>Product Inquiry</strong> requires WooCommerce to be installed and active. Please install %s first.', 'product-inquiry' ),
+						__( '<strong>Product Inquiry</strong> requires WooCommerce to be installed and active. Please install %s first.', 'product-inquiry-for-woocommerce' ),
 						'<a href="' . esc_url( admin_url( 'plugin-install.php?s=woocommerce&tab=search&type=term' ) ) . '">WooCommerce</a>'
 					)
 				);

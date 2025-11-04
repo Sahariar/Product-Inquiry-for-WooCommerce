@@ -8,7 +8,7 @@
 	Inquiry Button
 	=========================== */
 
-.pi-inquiry-button {
+.product-inquiry-for-woocommerce-inquiry-button {
 	margin-top: 1em;
 	display: inline-block;
 }
@@ -17,7 +17,7 @@
 	Modal Overlay
 	=========================== */
 
-.pi-modal-overlay {
+.product-inquiry-for-woocommerce-modal-overlay {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -30,7 +30,7 @@
 	padding: 20px;
 }
 
-.pi-modal-overlay[aria-hidden="false"] {
+.product-inquiry-for-woocommerce-modal-overlay[aria-hidden="false"] {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -40,17 +40,17 @@
 	Modal Container
 	=========================== */
 
-.pi-modal {
+.product-inquiry-for-woocommerce-modal {
 	background: #fff;
 	border-radius: 8px;
 	max-width: 600px;
 	width: 100%;
 	position: relative;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-	animation: pi-modal-fade-in 0.2s ease-out;
+	animation: product-inquiry-for-woocommerce-modal-fade-in 0.2s ease-out;
 }
 
-@keyframes pi-modal-fade-in {
+@keyframes product-inquiry-for-woocommerce-modal-fade-in {
 	from {
 		opacity: 0;
 		transform: translateY(-20px);
@@ -65,11 +65,11 @@
 	Modal Content
 	=========================== */
 
-.pi-modal-content {
+.product-inquiry-for-woocommerce-modal-content {
 	padding: 30px;
 }
 
-.pi-modal-title {
+.product-inquiry-for-woocommerce-modal-title {
 	margin: 0 0 20px 0;
 	font-size: 24px;
 	line-height: 1.3;
@@ -77,7 +77,7 @@
 	padding-right: 40px; /* Space for close button */
 }
 
-.pi-modal-close {
+.product-inquiry-for-woocommerce-modal-close {
 	position: absolute;
 	top: 15px;
 	right: 15px;
@@ -96,8 +96,8 @@
 	transition: color 0.2s ease;
 }
 
-.pi-modal-close:hover,
-.pi-modal-close:focus {
+.product-inquiry-for-woocommerce-modal-close:hover,
+.product-inquiry-for-woocommerce-modal-close:focus {
 	color: #333;
 	outline: 2px solid #333;
 	outline-offset: 2px;
@@ -107,15 +107,15 @@
 	Inquiry Form
 	=========================== */
 
-.pi-inquiry-form {
+.product-inquiry-for-woocommerce-inquiry-form {
 	margin: 0;
 }
 
-.pi-form-row {
+.product-inquiry-for-woocommerce-form-row {
 	margin-bottom: 20px;
 }
 
-.pi-form-row label {
+.product-inquiry-for-woocommerce-form-row label {
 	display: block;
 	margin-bottom: 6px;
 	font-weight: 600;
@@ -123,15 +123,15 @@
 	font-size: 14px;
 }
 
-.pi-required {
+.product-inquiry-for-woocommerce-required {
 	color: #d63638;
 	font-weight: bold;
 }
 
-.pi-form-row input[type="text"],
-.pi-form-row input[type="email"],
-.pi-form-row input[type="tel"],
-.pi-form-row textarea {
+.product-inquiry-for-woocommerce-form-row input[type="text"],
+.product-inquiry-for-woocommerce-form-row input[type="email"],
+.product-inquiry-for-woocommerce-form-row input[type="tel"],
+.product-inquiry-for-woocommerce-form-row textarea {
 	width: 100%;
 	padding: 10px 12px;
 	border: 1px solid #ddd;
@@ -141,14 +141,14 @@
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.pi-form-row input:focus,
-.pi-form-row textarea:focus {
+.product-inquiry-for-woocommerce-form-row input:focus,
+.product-inquiry-for-woocommerce-form-row textarea:focus {
 	border-color: #007cba;
 	box-shadow: 0 0 0 1px #007cba;
 	outline: none;
 }
 
-.pi-form-row textarea {
+.product-inquiry-for-woocommerce-form-row textarea {
 	resize: vertical;
 	min-height: 100px;
 }
@@ -157,14 +157,14 @@
 	Form Actions
 	=========================== */
 
-.pi-form-actions {
+.product-inquiry-for-woocommerce-form-actions {
 	display: flex;
 	gap: 10px;
 	margin-top: 25px;
 }
 
-.pi-submit-button,
-.pi-cancel-button {
+.product-inquiry-for-woocommerce-submit-button,
+.product-inquiry-for-woocommerce-cancel-button {
 	padding: 12px 24px;
 	font-size: 16px;
 	cursor: pointer;
@@ -172,18 +172,18 @@
 	transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
-.pi-submit-button {
+.product-inquiry-for-woocommerce-submit-button {
 	flex: 1;
 }
 
-.pi-cancel-button {
+.product-inquiry-for-woocommerce-cancel-button {
 	flex: 0 0 auto;
 	background: #f0f0f0;
 	color: #333;
 	border: 1px solid #ddd;
 }
 
-.pi-cancel-button:hover {
+.product-inquiry-for-woocommerce-cancel-button:hover {
 	background: #e0e0e0;
 }
 
@@ -191,12 +191,12 @@
 	Form Messages
 	=========================== */
 
-.pi-form-messages {
+.product-inquiry-for-woocommerce-form-messages {
 	display: none;
 	margin-top: 20px;
 }
 
-.pi-form-messages p {
+.product-inquiry-for-woocommerce-form-messages p {
 	padding: 12px 16px;
 	border-radius: 4px;
 	margin: 0;
@@ -204,25 +204,25 @@
 	line-height: 1.5;
 }
 
-.pi-error {
+.product-inquiry-for-woocommerce-error {
 	background-color: #fcebea;
 	border-left: 4px solid #d63638;
 	color: #d63638;
 }
 
-.pi-success {
+.product-inquiry-for-woocommerce-success {
 	background-color: #e7f7e7;
 	border-left: 4px solid #46b450;
 	color: #46b450;
 }
 
-.pi-info {
+.product-inquiry-for-woocommerce-info {
 	background-color: #e5f5fa;
 	border-left: 4px solid #00a0d2;
 	color: #00a0d2;
 }
 /* Message Box Styles */
-.pi-form-message {
+.product-inquiry-for-woocommerce-form-message {
 	display: none;
 	padding: 12px 15px;
 	margin-bottom: 15px;
@@ -231,29 +231,29 @@
 	line-height: 1.5;
 }
 
-.pi-form-message.success {
+.product-inquiry-for-woocommerce-form-message.success {
 	background-color: #d4edda;
 	color: #155724;
 	border: 1px solid #c3e6cb;
 }
 
-.pi-form-message.error {
+.product-inquiry-for-woocommerce-form-message.error {
 	background-color: #f8d7da;
 	color: #721c24;
 	border: 1px solid #f5c6cb;
 }
 
-.pi-submit-btn:disabled {
+.product-inquiry-for-woocommerce-submit-btn:disabled {
 	opacity: 0.6;
 	cursor: not-allowed;
 }
 /* Form wrapper */
-.pi-form-wrapper {
+.product-inquiry-for-woocommerce-form-wrapper {
 	max-width: 600px;
 	margin: 0 auto;
 }
 
-.pi-shortcode-form {
+.product-inquiry-for-woocommerce-shortcode-form {
 	background: #f9f9f9;
 	padding: 30px;
 	border-radius: 8px;
@@ -261,26 +261,26 @@
 }
 
 /* Form title */
-.pi-form-title {
+.product-inquiry-for-woocommerce-form-title {
 	margin-bottom: 20px;
 }
 
-.pi-form-title h3 {
+.product-inquiry-for-woocommerce-form-title h3 {
 	margin: 0;
 	font-size: 20px;
 	color: #333;
 }
 
 /* Form fields */
-.pi-inquiry-form {
+.product-inquiry-for-woocommerce-inquiry-form {
 	margin: 0;
 }
 
-.pi-form-row {
+.product-inquiry-for-woocommerce-form-row {
 	margin-bottom: 20px;
 }
 
-.pi-form-row label {
+.product-inquiry-for-woocommerce-form-row label {
 	display: block;
 	margin-bottom: 8px;
 	font-weight: 600;
@@ -288,20 +288,20 @@
 	font-size: 14px;
 }
 
-.pi-form-row .required {
+.product-inquiry-for-woocommerce-form-row .required {
 	color: #d63638;
 }
 
-.pi-form-row .optional {
+.product-inquiry-for-woocommerce-form-row .optional {
 	font-weight: normal;
 	color: #666;
 	font-size: 13px;
 }
 
-.pi-form-row input[type="text"],
-.pi-form-row input[type="email"],
-.pi-form-row input[type="tel"],
-.pi-form-row textarea {
+.product-inquiry-for-woocommerce-form-row input[type="text"],
+.product-inquiry-for-woocommerce-form-row input[type="email"],
+.product-inquiry-for-woocommerce-form-row input[type="tel"],
+.product-inquiry-for-woocommerce-form-row textarea {
 	width: 100%;
 	padding: 10px 15px;
 	border: 1px solid #ddd;
@@ -311,27 +311,27 @@
 	transition: border-color 0.3s ease;
 }
 
-.pi-form-row input:focus,
-.pi-form-row textarea:focus {
+.product-inquiry-for-woocommerce-form-row input:focus,
+.product-inquiry-for-woocommerce-form-row textarea:focus {
 	outline: none;
 	border-color: #2271b1;
 	box-shadow: 0 0 0 1px #2271b1;
 }
 
-.pi-form-row textarea {
+.product-inquiry-for-woocommerce-form-row textarea {
 	resize: vertical;
 	min-height: 120px;
 }
 
 /* Form actions */
-.pi-form-actions {
+.product-inquiry-for-woocommerce-form-actions {
 	display: flex;
 	align-items: center;
 	gap: 15px;
 	margin-top: 20px;
 }
 
-.pi-submit-btn {
+.product-inquiry-for-woocommerce-submit-btn {
 	background: #2271b1;
 	color: #fff;
 	border: none;
@@ -343,52 +343,52 @@
 	transition: background 0.3s ease;
 }
 
-.pi-submit-btn:hover {
+.product-inquiry-for-woocommerce-submit-btn:hover {
 	background: #135e96;
 }
 
-.pi-submit-btn:disabled {
+.product-inquiry-for-woocommerce-submit-btn:disabled {
 	background: #ccc;
 	cursor: not-allowed;
 }
 
 /* Spinner */
-.pi-spinner {
+.product-inquiry-for-woocommerce-spinner {
 	display: none;
 	width: 20px;
 	height: 20px;
 	border: 3px solid rgba(0, 0, 0, 0.1);
 	border-top-color: #2271b1;
 	border-radius: 50%;
-	animation: pi-spin 0.8s linear infinite;
+	animation: product-inquiry-for-woocommerce-spin 0.8s linear infinite;
 }
 
-.pi-spinner.is-active {
+.product-inquiry-for-woocommerce-spinner.is-active {
 	display: inline-block;
 }
 
-@keyframes pi-spin {
+@keyframes product-inquiry-for-woocommerce-spin {
 	to {
 		transform: rotate(360deg);
 	}
 }
 
 /* Response messages */
-.pi-form-response {
+.product-inquiry-for-woocommerce-form-response {
 	margin-top: 15px;
 	padding: 12px 15px;
 	border-radius: 4px;
 	display: none;
 }
 
-.pi-form-response.success {
+.product-inquiry-for-woocommerce-form-response.success {
 	display: block;
 	background: #d4edda;
 	border: 1px solid #c3e6cb;
 	color: #155724;
 }
 
-.pi-form-response.error {
+.product-inquiry-for-woocommerce-form-response.error {
 	display: block;
 	background: #f8d7da;
 	border: 1px solid #f5c6cb;
@@ -397,31 +397,31 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-	.pi-shortcode-form {
+	.product-inquiry-for-woocommerce-shortcode-form {
 		padding: 20px;
 	}
 
-	.pi-form-title h3 {
+	.product-inquiry-for-woocommerce-form-title h3 {
 		font-size: 18px;
 	}
 
-	.pi-submit-btn {
+	.product-inquiry-for-woocommerce-submit-btn {
 		width: 100%;
 		padding: 14px;
 	}
 
-	.pi-form-actions {
+	.product-inquiry-for-woocommerce-form-actions {
 		flex-direction: column;
 		gap: 10px;
 	}
 
-	.pi-spinner {
+	.product-inquiry-for-woocommerce-spinner {
 		align-self: center;
 	}
 }
 
 /* Error state for shortcode */
-.pi-shortcode-error {
+.product-inquiry-for-woocommerce-shortcode-error {
 	padding: 15px;
 	background: #f9f9f9;
 	border-left: 4px solid #d63638;
@@ -433,30 +433,30 @@
 	=========================== */
 
 @media (max-width: 768px) {
-	.pi-modal {
+	.product-inquiry-for-woocommerce-modal {
 		max-width: 95%;
 		margin: 20px auto;
 	}
 
-	.pi-modal-content {
+	.product-inquiry-for-woocommerce-modal-content {
 		padding: 20px;
 	}
 
-	.pi-modal-title {
+	.product-inquiry-for-woocommerce-modal-title {
 		font-size: 20px;
 	}
 
-	.pi-form-actions {
+	.product-inquiry-for-woocommerce-form-actions {
 		flex-direction: column;
 	}
 
-	.pi-cancel-button {
+	.product-inquiry-for-woocommerce-cancel-button {
 		width: 100%;
 	}
 }
 
 @media (max-width: 480px) {
-	.pi-inquiry-button {
+	.product-inquiry-for-woocommerce-inquiry-button {
 		width: 100%;
 		text-align: center;
 	}

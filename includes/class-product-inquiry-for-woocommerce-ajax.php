@@ -62,10 +62,11 @@ class Product_Inquiry_Ajax {
 	 */
 	public function submit_inquiry() {
 		// Verify nonce
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'pi_inquiry_nonce' ) ) {
+		if ( ! isset( $_POST['product_inquiry_for_woocommerce_nonce'] ) || 
+			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['product_inquiry_for_woocommerce_nonce'] ) ), 'product_inquiry_for_woocommerce_submit_inquiry' ) ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Security verification failed. Please refresh the page and try again.', 'product-inquiry' ),
+					'message' => __( 'Security verification failed. Please refresh the page and try again.', 'product-inquiry-for-woocommerce' ),
 				)
 			);
 		}
@@ -82,22 +83,22 @@ class Product_Inquiry_Ajax {
 
 		// Validate product ID
 		if ( empty( $product_id ) || 'product' !== get_post_type( $product_id ) ) {
-			$errors[] = __( 'Invalid product.', 'product-inquiry' );
+			$errors[] = __( 'Invalid product.', 'product-inquiry-for-woocommerce' );
 		}
 
 		// Validate name
 		if ( empty( $name ) || strlen( $name ) < 2 ) {
-			$errors[] = __( 'Please enter a valid name.', 'product-inquiry' );
+			$errors[] = __( 'Please enter a valid name.', 'product-inquiry-for-woocommerce' );
 		}
 
 		// Validate email
 		if ( empty( $email ) || ! is_email( $email ) ) {
-			$errors[] = __( 'Please enter a valid email address.', 'product-inquiry' );
+			$errors[] = __( 'Please enter a valid email address.', 'product-inquiry-for-woocommerce' );
 		}
 
 		// Validate message
 		if ( empty( $message ) || strlen( $message ) < 10 ) {
-			$errors[] = __( 'Please enter a message with at least 10 characters.', 'product-inquiry' );
+			$errors[] = __( 'Please enter a message with at least 10 characters.', 'product-inquiry-for-woocommerce' );
 		}
 
 		// Return errors if any
@@ -114,7 +115,7 @@ class Product_Inquiry_Ajax {
 		if ( ! $product ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Product not found.', 'product-inquiry' ),
+					'message' => __( 'Product not found.', 'product-inquiry-for-woocommerce' ),
 				)
 			);
 		}
@@ -124,7 +125,7 @@ class Product_Inquiry_Ajax {
 		// Create inquiry post title
 		$post_title = sprintf(
 			/* translators: 1: Product title, 2: Sender name */
-			__( '%1$s — %2$s', 'product-inquiry' ),
+			__( '%1$s — %2$s', 'product-inquiry-for-woocommerce' ),
 			$product_title,
 			$name
 		);
@@ -135,18 +136,18 @@ class Product_Inquiry_Ajax {
 			'post_type'   => 'product_inquiry',
 			'post_status' => 'publish',
 			'meta_input'  => array(
-				'_pi_email'      => $email,
-				'_pi_message'    => $message,
-				'_pi_product_id' => $product_id,
-				'_pi_name'       => $name,
-				'_pi_phone'      => $phone,
-				'_pi_date'       => current_time( 'mysql' ),
-				'_pi_status'     => 'new',
+				'product_inquiry_for_woocommerce_email'      => $email,
+				'product_inquiry_for_woocommerce_message'    => $message,
+				'product_inquiry_for_woocommerce_product_id' => $product_id,
+				'product_inquiry_for_woocommerce_name'       => $name,
+				'product_inquiry_for_woocommerce_phone'      => $phone,
+				'product_inquiry_for_woocommerce_date'       => current_time( 'mysql' ),
+				'product_inquiry_for_woocommerce_status'     => 'new',
 			),
 		);
 
 		// Allow filtering before creation
-		$inquiry_data = apply_filters( 'pi_before_create_inquiry', $inquiry_data, $_POST );
+		$inquiry_data = apply_filters( 'product_inquiry_for_woocommerce_before_create_inquiry', $inquiry_data, $_POST );
 
 		// Insert the inquiry
 		$inquiry_id = wp_insert_post( $inquiry_data );
@@ -159,7 +160,7 @@ class Product_Inquiry_Ajax {
 
 			wp_send_json_error(
 				array(
-					'message' => __( 'Failed to save inquiry. Please try again later.', 'product-inquiry' ),
+					'message' => __( 'Failed to save inquiry. Please try again later.', 'product-inquiry-for-woocommerce' ),
 				)
 			);
 		}
@@ -185,7 +186,7 @@ class Product_Inquiry_Ajax {
 		}
 
 		// Fire action hook after inquiry submitted
-		do_action( 'pi_inquiry_submitted', $inquiry_id, $inquiry_data );
+		do_action( 'product_inquiry_for_woocommerce_inquiry_submitted', $inquiry_id, $inquiry_data );
 
 		// Get success message from settings
 		$success_message = Product_Inquiry_Settings::get_success_message();
@@ -222,40 +223,46 @@ class Product_Inquiry_Ajax {
 		// Email subject
 		$subject = sprintf(
 			/* translators: %s: Product title */
-			__( 'New Product Inquiry: %s', 'product-inquiry' ),
+			__( 'New Product Inquiry: %s', 'product-inquiry-for-woocommerce' ),
 			$data['product_title']
 		);
 
 		// Build email body
 		$body_parts = array(
-			__( 'You have received a new product inquiry.', 'product-inquiry' ),
+			__( 'You have received a new product inquiry.', 'product-inquiry-for-woocommerce' ),
 			'',
-			sprintf( __( 'Product: %s', 'product-inquiry' ), $data['product_title'] ),
-			sprintf( __( 'Product URL: %s', 'product-inquiry' ), $data['product_url'] ),
+			/* translators: %s: Product title */
+			sprintf( __( 'Product: %s', 'product-inquiry-for-woocommerce' ), $data['product_title'] ),
+			/* translators: %s: Product URL */
+			sprintf( __( 'Product URL: %s', 'product-inquiry-for-woocommerce' ), $data['product_url'] ),
 			'',
-			'--- ' . __( 'Inquiry Details', 'product-inquiry' ) . ' ---',
+			'--- ' . __( 'Inquiry Details', 'product-inquiry-for-woocommerce' ) . ' ---',
 			'',
-			sprintf( __( 'Name: %s', 'product-inquiry' ), $data['name'] ),
-			sprintf( __( 'Email: %s', 'product-inquiry' ), $data['email'] ),
+			/* translators: %s: Customer name */
+			sprintf( __( 'Name: %s', 'product-inquiry-for-woocommerce' ), $data['name'] ),
+			/* translators: %s: Customer email address */
+			sprintf( __( 'Email: %s', 'product-inquiry-for-woocommerce' ), $data['email'] ),
 		);
 
 		// Add phone if provided
 		if ( ! empty( $data['phone'] ) ) {
-			$body_parts[] = sprintf( __( 'Phone: %s', 'product-inquiry' ), $data['phone'] );
+			/* translators: %s: Customer phone number */
+			$body_parts[] = sprintf( __( 'Phone: %s', 'product-inquiry-for-woocommerce' ), $data['phone'] );
 		}
 
 		$body_parts = array_merge(
 			$body_parts,
 			array(
 				'',
-				__( 'Message:', 'product-inquiry' ),
+				__( 'Message:', 'product-inquiry-for-woocommerce' ),
 				$data['message'],
 				'',
-				'--- ' . __( 'Admin Actions', 'product-inquiry' ) . ' ---',
+				'--- ' . __( 'Admin Actions', 'product-inquiry-for-woocommerce' ) . ' ---',
 				'',
-				sprintf( __( 'View/Reply: %s', 'product-inquiry' ), $inquiry_url ),
+				/* translators: %s: URL to view/reply to the inquiry in admin */
+				sprintf( __( 'View/Reply: %s', 'product-inquiry-for-woocommerce' ), $inquiry_url ),
 				'',
-				__( 'This is an automated notification from your Product Inquiry plugin.', 'product-inquiry' ),
+				__( 'This is an automated notification from your Product Inquiry plugin.', 'product-inquiry-for-woocommerce' ),
 			)
 		);
 
@@ -269,9 +276,9 @@ class Product_Inquiry_Ajax {
 		);
 
 		// Allow filtering of email params
-		$subject = apply_filters( 'pi_admin_email_subject', $subject, $data );
-		$body    = apply_filters( 'pi_admin_email_body', $body, $data );
-		$headers = apply_filters( 'pi_admin_email_headers', $headers, $data );
+		$subject = apply_filters( 'product_inquiry_for_woocommerce_admin_email_subject', $subject, $data );
+		$body    = apply_filters( 'product_inquiry_for_woocommerce_admin_email_body', $body, $data );
+		$headers = apply_filters( 'product_inquiry_for_woocommerce_admin_email_headers', $headers, $data );
 
 		// Send email
 		$sent = wp_mail( $admin_email, $subject, $body, $headers );
@@ -318,9 +325,9 @@ class Product_Inquiry_Ajax {
 		);
 
 		// Allow filtering of auto-reply params
-		$subject = apply_filters( 'pi_auto_reply_subject', $subject, $data );
-		$message = apply_filters( 'pi_auto_reply_message', $message, $data );
-		$headers = apply_filters( 'pi_auto_reply_headers', $headers, $data );
+		$subject = apply_filters( 'product_inquiry_for_woocommerce_auto_reply_subject', $subject, $data );
+		$message = apply_filters( 'product_inquiry_for_woocommerce_auto_reply_message', $message, $data );
+		$headers = apply_filters( 'product_inquiry_for_woocommerce_auto_reply_headers', $headers, $data );
 
 		// Send email to customer
 		$sent = wp_mail( $data['email'], $subject, $message, $headers );

@@ -8,12 +8,12 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Product Inquiry for WooCommerce
- * Plugin URI:        https://github.com/sahariar/product-inquiry
+ * Plugin URI:        https://github.com/sahariar/product-inquiry-for-woocommerce
  * Description:       Allow customers to send product inquiries from WooCommerce product pages. Admins can manage inquiries in the dashboard.
  * Version:           1.0.0
  * Author:            Sahariar kabir
  * Author URI:        https://sahariarkabir.com/
- * Text Domain:       product-inquiry
+ * Text Domain:       product-inquiry-for-woocommerce
  * Domain Path:       /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
@@ -51,7 +51,7 @@ add_action( 'before_woocommerce_init', 'product_inquiry_declare_hpos_compatibili
  * The code that runs during plugin activation.
  */
 function activate_product_inquiry() {
-	require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-activator.php';
+	require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-activator.php';
 	Product_Inquiry_Activator::activate();
 }
 
@@ -59,7 +59,7 @@ function activate_product_inquiry() {
  * The code that runs during plugin deactivation.
  */
 function deactivate_product_inquiry() {
-	require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi-deactivator.php';
+	require_once PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce-deactivator.php';
 	Product_Inquiry_Deactivator::deactivate();
 }
 
@@ -69,7 +69,7 @@ register_deactivation_hook( __FILE__, 'deactivate_product_inquiry' );
 /**
  * The core plugin class.
  */
-require PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-pi.php';
+require PRODUCT_INQUIRY_PLUGIN_DIR . 'includes/class-product-inquiry-for-woocommerce.php';
 
 /**
  * Begins execution of the plugin.
