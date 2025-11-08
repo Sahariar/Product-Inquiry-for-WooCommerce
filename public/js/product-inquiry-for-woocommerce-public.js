@@ -30,12 +30,14 @@
             this.$closeButton = $('.product-inquiry-for-woocommerce-modal-close');
             this.$cancelButton = $('.product-inquiry-for-woocommerce-cancel-button');
             this.$form = $('#product-inquiry-for-woocommerce-inquiry-form');
-            this.$submitBtn = $('.product-inquiry-for-woocommerce-submit-button'); // FIXED: Added this line
+            this.$submitBtn = $('.product-inquiry-for-woocommerce-submit-button');
             this.$messages = $('.product-inquiry-for-woocommerce-form-messages');
             this.$firstInput = $('#product-inquiry-for-woocommerce-name');
             
             // Store original button text
-            this.submitBtnText = this.$submitBtn.text();
+            if (this.$submitBtn.length) {
+                this.submitBtnText = this.$submitBtn.text();
+            }
         },
 
         /**
@@ -76,10 +78,10 @@
                 }
             });
 
-            // Handle form submission
+            // Handle modal form submission
             this.$form.on('submit', function(e) {
                 e.preventDefault();
-                self.handleSubmit();
+                self.handleSubmit($(this));
             });
         },
 
@@ -104,7 +106,7 @@
          */
         closeModal: function() {
             this.$overlay.attr('aria-hidden', 'true').fadeOut(200);
-            this.$openButton.focus(); // Return focus to trigger button
+            this.$openButton.focus();
             
             // Re-enable body scroll
             $('body').css('overflow', '');
@@ -117,35 +119,43 @@
         /**
          * Handle form submission via AJAX.
          */
-        handleSubmit: function() {
+        handleSubmit: function($form) {
             const self = this;
             
             // Clear previous messages
             this.clearMessages();
 
+            // Get form elements
+            const $nameInput = $form.find('input[name="name"]');
+            const $emailInput = $form.find('input[name="email"]');
+            const $messageInput = $form.find('textarea[name="message"]');
+            const $submitBtn = $form.find('button[type="submit"]');
+            const $messagesDiv = $form.find('.product-inquiry-for-woocommerce-form-messages');
+
             // Basic client-side validation
-            const name = $('#product-inquiry-for-woocommerce-name').val().trim();
-            const email = $('#product-inquiry-for-woocommerce-email').val().trim();
-            const message = $('#product-inquiry-for-woocommerce-message').val().trim();
+            const name = $nameInput.val().trim();
+            const email = $emailInput.val().trim();
+            const message = $messageInput.val().trim();
 
             if (!name || !email || !message) {
-                this.showMessage('Please fill in all required fields.', 'error');
+                this.showMessage('Please fill in all required fields.', 'error', $messagesDiv);
                 return false;
             }
 
             if (!this.validateEmail(email)) {
-                this.showMessage('Please enter a valid email address.', 'error');
+                this.showMessage('Please enter a valid email address.', 'error', $messagesDiv);
                 return false;
             }
 
+            // Store original button text
+            const submitBtnText = $submitBtn.text();
+
             // Disable submit button
-            this.$submitBtn.prop('disabled', true).text('Sending...');
+            $submitBtn.prop('disabled', true).text('Sending...');
 
             // Prepare form data
-            const formData = this.$form.serialize() + '&action=product_inquiry_for_woocommerce_submit_inquiry';
-              // DEBUG: Log what we're sending
-        console.log('Form Data:', formData);
-        console.log('AJAX URL:', productInquiryForWooCommerceData.ajax_url);
+            const formData = $form.serialize() + '&action=product_inquiry_for_woocommerce_submit_inquiry';
+
             // Send AJAX request
             $.ajax({
                 url: productInquiryForWooCommerceData.ajax_url,
@@ -154,24 +164,26 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        self.showMessage(response.data.message, 'success');
-                        self.$form[0].reset();
+                        self.showMessage(response.data.message, 'success', $messagesDiv);
+                        $form[0].reset();
                         
-                        // Close modal after 2 seconds
-                        setTimeout(function() {
-                            self.closeModal();
-                        }, 2000);
+                        // Close modal after 2 seconds (only if it's the modal form)
+                        if ($form.attr('id') === 'product-inquiry-for-woocommerce-inquiry-form') {
+                            setTimeout(function() {
+                                self.closeModal();
+                            }, 2000);
+                        }
                     } else {
-                        self.showMessage(response.data.message, 'error');
+                        self.showMessage(response.data.message, 'error', $messagesDiv);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error , xhr);
-                    self.showMessage('An unexpected error occurred. Please try again.', 'error');
+                    console.error('AJAX Error:', status, error, xhr);
+                    self.showMessage('An unexpected error occurred. Please try again.', 'error', $messagesDiv);
                 },
                 complete: function() {
                     // Re-enable submit button with original text
-                    self.$submitBtn.prop('disabled', false).text(self.submitBtnText);
+                    $submitBtn.prop('disabled', false).text(submitBtnText);
                 }
             });
         },
@@ -187,10 +199,13 @@
         /**
          * Display a message to the user.
          */
-        showMessage: function(message, type) {
+        showMessage: function(message, type, $container) {
             const alertClass = type === 'error' ? 'product-inquiry-for-woocommerce-error' : type === 'success' ? 'product-inquiry-for-woocommerce-success' : 'product-inquiry-for-woocommerce-info';
             
-            this.$messages
+            // Use provided container or fall back to default
+            const $target = $container && $container.length ? $container : this.$messages;
+            
+            $target
                 .html('<p class="' + alertClass + '">' + message + '</p>')
                 .slideDown();
         },
@@ -203,9 +218,98 @@
         }
     };
 
+    /**
+     * Handle inline/shortcode forms.
+     */
+    const PI_InlineForms = {
+        
+        init: function() {
+            this.bindEvents();
+        },
+
+        bindEvents: function() {
+            const self = this;
+            
+            // Handle all inline inquiry forms (shortcode/block)
+            $(document).on('submit', '.pi-inquiry-form', function(e) {
+                e.preventDefault();
+                self.handleSubmit($(this));
+            });
+        },
+
+        handleSubmit: function($form) {
+            const self = this;
+            
+            // Get form elements
+            const $responseDiv = $form.find('.pi-form-response');
+            const $submitBtn = $form.find('.pi-submit-btn');
+            const $spinner = $form.find('.pi-spinner');
+
+            // Basic client-side validation
+            const name = $form.find('input[name="name"]').val().trim();
+            const email = $form.find('input[name="email"]').val().trim();
+            const message = $form.find('textarea[name="message"]').val().trim();
+
+            if (!name || !email || !message) {
+                this.showMessage($responseDiv, 'Please fill in all required fields.', 'error');
+                return false;
+            }
+
+            if (!this.validateEmail(email)) {
+                this.showMessage($responseDiv, 'Please enter a valid email address.', 'error');
+                return false;
+            }
+
+            // Show loading state
+            $submitBtn.prop('disabled', true);
+            $spinner.addClass('is-active');
+            $responseDiv.html('').hide();
+
+            // Prepare form data
+            const formData = $form.serialize() + '&action=product_inquiry_for_woocommerce_submit_inquiry';
+
+            // Send AJAX request
+            $.ajax({
+                url: productInquiry.ajax_url,
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        self.showMessage($responseDiv, response.data.message, 'success');
+                        $form[0].reset();
+                    } else {
+                        self.showMessage($responseDiv, response.data.message, 'error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error, xhr);
+                    self.showMessage($responseDiv, 'An unexpected error occurred. Please try again.', 'error');
+                },
+                complete: function() {
+                    $submitBtn.prop('disabled', false);
+                    $spinner.removeClass('is-active');
+                }
+            });
+        },
+
+        validateEmail: function(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        },
+
+        showMessage: function($container, message, type) {
+            const className = type === 'error' ? 'pi-error' : 'pi-success';
+            $container
+                .html('<div class="pi-message ' + className + '">' + message + '</div>')
+                .slideDown();
+        }
+    };
+
     // Initialize on document ready
     $(document).ready(function() {
         PI_Modal.init();
+        PI_InlineForms.init();
     });
 
 })(jQuery);

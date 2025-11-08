@@ -31,9 +31,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
-// Render block
 printf(
-    '<div %s>%s</div>',
-    $wrapper_attributes,
-    wp_kses_post( do_shortcode( $shortcode ) )
+	'<div %s>%s</div>',
+	$wrapper_attributes,
+	do_shortcode( $shortcode )
 );

@@ -294,35 +294,35 @@ Inquiries are stored as a custom post type: `product_inquiry`
 ## Screenshots
 
 ### 1. Product Page Inquiry Button
-![Product Page Button](assets/screenshot-1.png)
+![Product Page Button](assets/img/screenshot-1.webp)
 *Inquiry button appears on product pages*
 
 ### 2. Inquiry Form Modal
-![Inquiry Form](assets/screenshot-2.png)
+![Inquiry Form](assets/img/screenshot-2.webp)
 *Clean, user-friendly modal form*
 
 ### 3. Admin Inquiries List
-![Admin List](assets/screenshot-3.png)
+![Admin List](assets/img/screenshot-3.webp)
 *Manage all inquiries from WordPress admin*
 
 ### 4. Single Inquiry View
-![Single Inquiry](assets/screenshot-4.png)
+![Single Inquiry](assets/img/screenshot-4.webp)
 *View details and reply to customers*
 
 ### 5. Settings Page
-![Settings](assets/screenshot-5.png)
+![Settings](assets/img/screenshot-5.webp)
 *Configure plugin behavior and email templates*
 
 ### 6. CSV Export
-![CSV Export](assets/screenshot-6.png)
+![CSV Export](assets/img/screenshot-6.webp)
 *Export inquiries for analysis*
 
 ### 7. Gutenberg Block
-![Gutenberg Block](assets/screenshot-7.png)
+![Gutenberg Block](assets/img/screenshot-7.webp)
 *Visual block editor integration*
 
 ### 8. Reply Interface
-![Reply Interface](assets/screenshot-8.png)
+![Reply Interface](assets/img/screenshot-8.webp)
 *Respond to customers directly from admin*
 
 > **Note:** To add screenshots, place images in `assets/` folder and update paths above.
@@ -398,7 +398,7 @@ Please ensure:
 This plugin is licensed under the GPL v2 or later.
 ```
 Product Inquiry for WooCommerce
-Copyright (C) 2025 Your Name
+Copyright (C) 2025 Sahariar Kabir
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -420,9 +420,9 @@ GNU General Public License for more details.
 
 ## Support
 
-- **Documentation:** [https://example.com/docs](https://example.com/docs)
-- **Support Forum:** [https://example.com/support](https://example.com/support)
-- **Bug Reports:** [GitHub Issues](https://github.com/yourusername/product-inquiry-for-woocommerce/issues)
+- **Documentation:** [https://github.com/Sahariar/product-inquiry-for-woocommerce](https://example.com/docs)
+- **Support Forum:** [https://github.com/Sahariar/product-inquiry-for-woocommerce](https://example.com/support)
+- **Bug Reports:** [GitHub Issues](https://github.com/Sahariar/product-inquiry-for-woocommerce/issues)
 
 ## Show Your Support
 

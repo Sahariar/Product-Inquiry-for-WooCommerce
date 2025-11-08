@@ -100,12 +100,6 @@ class Product_Inquiry_Shortcode {
 		// Enqueue required assets
 		$this->enqueue_shortcode_assets();
 
-		// Get form display mode from settings
-		$display_mode = Product_Inquiry_Settings::get_form_display_mode();
-
-		// For shortcode, always force inline mode
-		$display_mode = 'inline';
-
 		// Render form
 		ob_start();
 
@@ -113,7 +107,7 @@ class Product_Inquiry_Shortcode {
 			$this->render_form_title( $product );
 		}
 
-		$this->render_inquiry_form( $product, $display_mode );
+		$this->render_inquiry_form( $product );
 
 		return ob_get_clean();
 	}
@@ -193,16 +187,14 @@ class Product_Inquiry_Shortcode {
 	 * Render inquiry form.
 	 *
 	 * @since    1.0.0
-	 * @param    WC_Product $product      Product object.
-	 * @param    string     $display_mode Display mode (inline or popup).
+	 * @param    WC_Product $product Product object.
 	 */
-	private function render_inquiry_form( $product, $display_mode ) {
+	private function render_inquiry_form( $product ) {
 		$product_id = $product->get_id();
 		?>
 		<div class="pi-form-wrapper pi-shortcode-form">
 			<form class="pi-inquiry-form" data-product-id="<?php echo esc_attr( $product_id ); ?>">
-				<?php wp_nonce_field( 'pi_inquiry_nonce', 'pi_nonce' ); ?>
-				
+				<?php wp_nonce_field('product_inquiry_for_woocommerce_submit_inquiry', 'product_inquiry_for_woocommerce_nonce'); ?>
 				<input type="hidden" name="product_id" value="<?php echo esc_attr( $product_id ); ?>">
 
 				<div class="pi-form-row">
@@ -261,7 +253,7 @@ class Product_Inquiry_Shortcode {
 				</div>
 
 				<div class="pi-form-actions">
-					<button type="submit" class="button pi-submit-btn">
+					<button type="submit" class="button pi-submit-btn product-inquiry-for-woocommerce-inquiry-button">
 						<?php esc_html_e( 'Send Inquiry', 'product-inquiry-for-woocommerce' ); ?>
 					</button>
 					<span class="pi-spinner"></span>

@@ -7,12 +7,32 @@
 /* ===========================
 	Inquiry Button
 	=========================== */
-
-.product-inquiry-for-woocommerce-inquiry-button {
-	margin-top: 1em;
-	display: inline-block;
+.wp-block-woocommerce-add-to-cart-form .variations_button>.product-inquiry-for-woocommerce-inquiry-button{
+    grid-column: 3 / 3;
+    justify-self: start;
 }
-
+.product-inquiry-for-woocommerce-inquiry-button {
+	background-color: var(--wp--preset--color--contrast);
+    border-width: 0;
+    color: var(--wp--preset--color--base);
+    font-family: inherit;
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: inherit;
+    padding-top: 1rem;
+    padding-right: 2.25rem;
+    padding-bottom: 1rem;
+    padding-left: 2.25rem;
+    text-decoration: none;
+	cursor: pointer;
+}
+.product-inquiry-for-woocommerce-inquiry-button:hover{
+    background-color: color-mix(in srgb, var(--wp--preset--color--contrast) 85%, transparent);
+    border-color: transparent;
+    color: var(--wp--preset--color--base);
+}
+.pi-inquiry-active .variations_button{
+    grid-template-columns: min-content 30% auto;
+}
 /* ===========================
 	Modal Overlay
 	=========================== */
@@ -132,7 +152,7 @@
 .product-inquiry-for-woocommerce-form-row input[type="email"],
 .product-inquiry-for-woocommerce-form-row input[type="tel"],
 .product-inquiry-for-woocommerce-form-row textarea {
-	width: 100%;
+	width: 95% !important;
 	padding: 10px 12px;
 	border: 1px solid #ddd;
 	border-radius: 4px;
@@ -165,6 +185,17 @@
 
 .product-inquiry-for-woocommerce-submit-button,
 .product-inquiry-for-woocommerce-cancel-button {
+	background-color: var(--wp--preset--color--contrast);
+    border-width: 0;
+    color: var(--wp--preset--color--base);
+    font-family: inherit;
+    font-size: var(--wp--preset--font-size--medium);
+    line-height: inherit;
+    padding-top: 1rem;
+    padding-right: 2.25rem;
+    padding-bottom: 1rem;
+    padding-left: 2.25rem;
+    text-decoration: none;
 	padding: 12px 24px;
 	font-size: 16px;
 	cursor: pointer;
@@ -302,7 +333,7 @@
 .product-inquiry-for-woocommerce-form-row input[type="email"],
 .product-inquiry-for-woocommerce-form-row input[type="tel"],
 .product-inquiry-for-woocommerce-form-row textarea {
-	width: 100%;
+	width: 95%;
 	padding: 10px 15px;
 	border: 1px solid #ddd;
 	border-radius: 4px;
@@ -512,28 +543,6 @@
 	gap: 15px;
 }
 
-.pi-form-wrapper .pi-submit-btn {
-	background-color: #0073aa;
-	color: #fff;
-	padding: 12px 30px;
-	border: none;
-	border-radius: 4px;
-	font-size: 15px;
-	font-weight: 600;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	line-height: 1;
-}
-
-.pi-form-wrapper .pi-submit-btn:hover {
-	background-color: #005a87;
-}
-
-.pi-form-wrapper .pi-submit-btn:disabled {
-	background-color: #ccc;
-	cursor: not-allowed;
-	opacity: 0.6;
-}
 
 /* Spinner */
 .pi-form-wrapper .pi-spinner {
@@ -647,7 +656,6 @@
 
 @media (max-width: 480px) {
 	.product-inquiry-for-woocommerce-inquiry-button {
-		width: 100%;
 		text-align: center;
 	}
 }

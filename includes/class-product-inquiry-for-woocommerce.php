@@ -154,6 +154,7 @@ class Product_Inquiry {
 		}
 		$this->loader->add_action( $hook, $plugin_public, 'render_inquiry_button' );
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'render_inquiry_modal' );
+		$this->loader->add_filter( 'woocommerce_post_class', $plugin_public, 'add_product_inquiry_class', 10, 1 );
 
 		// Shortcode
 		$plugin_shortcode = new Product_Inquiry_Shortcode( $this->get_plugin_name(), $this->get_version() );
@@ -161,6 +162,7 @@ class Product_Inquiry {
 
 		// Gutenberg block
 		$this->loader->add_action( 'init', $this, 'register_blocks' );
+		
 	}
 
 	public function woocommerce_missing_notice() {
