@@ -64,7 +64,7 @@
 								url: piReply.ajax_url,
 								type: 'POST',
 								data: {
-									action: 'pi_send_reply',
+									action: 'product_inquiry_for_woocommerce_send_reply',
 									nonce: piReply.nonce,
 									inquiry_id: piReply.inquiry_id,
 									reply_message: replyMessage

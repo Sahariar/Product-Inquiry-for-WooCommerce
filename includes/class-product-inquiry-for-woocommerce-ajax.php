@@ -153,11 +153,6 @@ class Product_Inquiry_Ajax {
 		$inquiry_id = wp_insert_post( $inquiry_data );
 
 		if ( is_wp_error( $inquiry_id ) ) {
-			// Log error for debugging
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'Product Inquiry Error: ' . $inquiry_id->get_error_message() );
-			}
-
 			wp_send_json_error(
 				array(
 					'message' => __( 'Failed to save inquiry. Please try again later.', 'product-inquiry-for-woocommerce' ),
@@ -212,9 +207,6 @@ class Product_Inquiry_Ajax {
 		$admin_email = Product_Inquiry_Settings::get_admin_email();
 
 		if ( empty( $admin_email ) ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( 'Product Inquiry Error: Admin email not configured.' );
-			}
 			return false;
 		}
 
@@ -282,12 +274,6 @@ class Product_Inquiry_Ajax {
 
 		// Send email
 		$sent = wp_mail( $admin_email, $subject, $body, $headers );
-
-		// Log failure
-		if ( ! $sent && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Product Inquiry Error: Failed to send admin notification for inquiry #' . $data['inquiry_id'] );
-		}
-
 		return $sent;
 	}
 
@@ -331,12 +317,6 @@ class Product_Inquiry_Ajax {
 
 		// Send email to customer
 		$sent = wp_mail( $data['email'], $subject, $message, $headers );
-
-		// Log failure
-		if ( ! $sent && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Product Inquiry Error: Failed to send auto-reply for inquiry #' . $data['inquiry_id'] );
-		}
-
 		return $sent;
 	}
 }

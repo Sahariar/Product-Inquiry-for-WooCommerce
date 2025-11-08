@@ -213,12 +213,6 @@ class Product_Inquiry_Reply {
 
 		// Send email
 		$sent = wp_mail( $inquiry_data['customer_email'], $subject, $body, $headers );
-
-		// Log failure
-		if ( ! $sent && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Product Inquiry Error: Failed to send reply email for inquiry #' . $inquiry_id );
-		}
-
 		return $sent;
 	}
 

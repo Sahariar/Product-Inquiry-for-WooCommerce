@@ -29,10 +29,5 @@ class Product_Inquiry_Deactivator {
 		if ( $timestamp ) {
 			wp_unschedule_event( $timestamp, 'product_inquiry_for_woocommerce_daily_cleanup' );
 		}
-
-		// Log deactivation (only in debug mode)
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Product Inquiry Plugin deactivated at ' . current_time( 'mysql' ) );
-		}
 	}
 }

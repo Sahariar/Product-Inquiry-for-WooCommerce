@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -8,7 +7,6 @@
  */
 
 class Product_Inquiry_Admin {
-
 
 	private $plugin_name;
 	private $version;
@@ -32,7 +30,7 @@ class Product_Inquiry_Admin {
 
 		wp_enqueue_style(
 			$this->plugin_name,
-			plugin_dir_url( __FILE__ ) . 'css/pi-admin.css',
+			plugin_dir_url( __FILE__ ) . 'css/product-inquiry-for-woocommerce-admin.css',
 			array(),
 			$this->version,
 			'all'
@@ -53,7 +51,7 @@ class Product_Inquiry_Admin {
 
 		wp_enqueue_script(
 			$this->plugin_name,
-			plugin_dir_url( __FILE__ ) . 'js/pi-admin.js',
+			plugin_dir_url( __FILE__ ) . 'js/product-inquiry-for-woocommerce-admin.js',
 			array( 'jquery' ),
 			$this->version,
 			false
@@ -357,8 +355,9 @@ class Product_Inquiry_Admin {
 		}
 
 		$post_id = absint( $_GET['post_id'] );
+		$nonce   = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 
-		if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'pi_mark_' . $status . '_' . $post_id ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'pi_mark_' . $status . '_' . $post_id ) ) {
 			wp_die( esc_html__( 'Security check failed.', 'product-inquiry-for-woocommerce' ) );
 		}
 
@@ -428,16 +427,22 @@ class Product_Inquiry_Admin {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display, no action taken
 		if ( isset( $_GET['pi_message'] ) ) {
-			$this->render_single_action_notice( sanitize_text_field( $_GET['pi_message'] ) );
+			$message = sanitize_text_field( wp_unslash( $_GET['pi_message'] ) );
+			$this->render_single_action_notice( $message );
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display, no action taken
 		if ( isset( $_GET['pi_bulk_processed'] ) ) {
-			$this->render_bulk_notice( absint( $_GET['pi_bulk_processed'] ), 'processed' );
+			$count = absint( $_GET['pi_bulk_processed'] );
+			$this->render_bulk_notice( $count, 'processed' );
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display, no action taken
 		if ( isset( $_GET['pi_bulk_unread'] ) ) {
-			$this->render_bulk_notice( absint( $_GET['pi_bulk_unread'] ), 'unread' );
+			$count = absint( $_GET['pi_bulk_unread'] );
+			$this->render_bulk_notice( $count, 'unread' );
 		}
 	}
 
@@ -542,23 +547,23 @@ class Product_Inquiry_Admin {
 		<div class="pi-inquiry-details">
 			<table class="form-table">
 				<tr>
-				<th scope="row"><?php esc_html_e( 'Status', 'product-inquiry-for-woocommerce' ); ?></th>
-				<td>
-					<?php
-					switch ( $status ) {
-						case 'processed':
-							echo '<span class="pi-status pi-status-processed">' . esc_html__( 'Processed', 'product-inquiry-for-woocommerce' ) . '</span>';
-							break;
-						case 'replied':
-							echo '<span class="pi-status pi-status-replied">' . esc_html__( 'Replied', 'product-inquiry-for-woocommerce' ) . '</span>';
-							break;
-						default:
-							echo '<span class="pi-status pi-status-unread">' . esc_html__( 'Unread', 'product-inquiry-for-woocommerce' ) . '</span>';
-							break;
-					}
-					?>
-				</td>
-			</tr>
+					<th scope="row"><?php esc_html_e( 'Status', 'product-inquiry-for-woocommerce' ); ?></th>
+					<td>
+						<?php
+						switch ( $status ) {
+							case 'processed':
+								echo '<span class="pi-status pi-status-processed">' . esc_html__( 'Processed', 'product-inquiry-for-woocommerce' ) . '</span>';
+								break;
+							case 'replied':
+								echo '<span class="pi-status pi-status-replied">' . esc_html__( 'Replied', 'product-inquiry-for-woocommerce' ) . '</span>';
+								break;
+							default:
+								echo '<span class="pi-status pi-status-unread">' . esc_html__( 'Unread', 'product-inquiry-for-woocommerce' ) . '</span>';
+								break;
+						}
+						?>
+					</td>
+				</tr>
 				<tr>
 					<th scope="row"><?php esc_html_e( 'Product', 'product-inquiry-for-woocommerce' ); ?></th>
 					<td>
@@ -601,7 +606,6 @@ class Product_Inquiry_Admin {
 						<?php echo esc_html( get_the_date( '', $post ) . ' ' . get_the_time( '', $post ) ); ?>
 					</td>
 				</tr>
-				
 			</table>
 		</div>
 		<?php

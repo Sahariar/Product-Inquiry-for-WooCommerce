@@ -428,6 +428,196 @@
 	color: #d63638;
 	margin: 20px 0;
 }
+/* ========================================
+   Shortcode & Block Form Styles
+   ======================================== */
+
+.pi-shortcode-form,
+.pi-inquiry-form-block .pi-form-wrapper {
+	max-width: 600px;
+	margin: 2rem 0;
+}
+
+.pi-form-title h3 {
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	color: #333;
+	font-weight: 600;
+}
+
+.pi-form-wrapper .pi-form-row {
+	margin-bottom: 1.25rem;
+}
+
+.pi-form-wrapper .pi-form-row label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+	color: #333;
+	font-size: 14px;
+}
+
+.pi-form-wrapper .pi-form-row label .required {
+	color: #dc3232;
+}
+
+.pi-form-wrapper .pi-form-row label .optional {
+	color: #666;
+	font-weight: 400;
+	font-size: 13px;
+}
+
+/* Input and textarea styles */
+.pi-form-wrapper .pi-form-row input[type="text"],
+.pi-form-wrapper .pi-form-row input[type="email"],
+.pi-form-wrapper .pi-form-row input[type="tel"],
+.pi-form-wrapper .pi-form-row textarea {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 1.5;
+	background-color: #fff;
+	color: #333;
+	box-sizing: border-box;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	font-family: inherit;
+}
+
+.pi-form-wrapper .pi-form-row input:focus,
+.pi-form-wrapper .pi-form-row textarea:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 1px rgba(0, 115, 170, 0.25);
+}
+
+.pi-form-wrapper .pi-form-row textarea {
+	min-height: 120px;
+	resize: vertical;
+}
+
+/* Placeholder styles */
+.pi-form-wrapper .pi-form-row input::placeholder,
+.pi-form-wrapper .pi-form-row textarea::placeholder {
+	color: #999;
+	opacity: 1;
+}
+
+/* Form actions (submit button area) */
+.pi-form-wrapper .pi-form-actions {
+	margin-top: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.pi-form-wrapper .pi-submit-btn {
+	background-color: #0073aa;
+	color: #fff;
+	padding: 12px 30px;
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	line-height: 1;
+}
+
+.pi-form-wrapper .pi-submit-btn:hover {
+	background-color: #005a87;
+}
+
+.pi-form-wrapper .pi-submit-btn:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+/* Spinner */
+.pi-form-wrapper .pi-spinner {
+	display: none;
+	width: 20px;
+	height: 20px;
+	border: 3px solid #f3f3f3;
+	border-top: 3px solid #0073aa;
+	border-radius: 50%;
+	animation: pi-spin 1s linear infinite;
+}
+
+.pi-form-wrapper.pi-loading .pi-spinner {
+	display: inline-block;
+}
+
+@keyframes pi-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* Response messages */
+.pi-form-wrapper .pi-form-response {
+	margin-top: 1rem;
+	padding: 0;
+}
+
+.pi-form-wrapper .pi-form-response.success,
+.pi-form-wrapper .pi-form-response.error {
+	padding: 12px 15px;
+	border-radius: 4px;
+	margin-top: 1rem;
+}
+
+.pi-form-wrapper .pi-form-response.success {
+	background-color: #d4edda;
+	border: 1px solid #c3e6cb;
+	color: #155724;
+}
+
+.pi-form-wrapper .pi-form-response.error {
+	background-color: #f8d7da;
+	border: 1px solid #f5c6cb;
+	color: #721c24;
+}
+
+/* Error styles */
+.pi-shortcode-error {
+	padding: 15px;
+	background: #f9f9f9;
+	border-left: 4px solid #d63638;
+	color: #d63638;
+	margin: 1rem 0;
+	border-radius: 0 4px 4px 0;
+}
+/* Front-end styles for Product Inquiry Form Block */
+.wp-block-product-inquiry-inquiry-form {
+	margin: 2rem 0;
+}
+/* Block-specific wrapper adjustments */
+.alignwide .pi-inquiry-form-block .pi-form-wrapper {
+	max-width: 800px;
+}
+
+.alignfull .pi-inquiry-form-block .pi-form-wrapper {
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* Responsive adjustments */
+@media (max-width: 600px) {
+	.pi-shortcode-form,
+	.pi-inquiry-form-block .pi-form-wrapper {
+		max-width: 100%;
+	}
+	
+	.pi-form-wrapper .pi-submit-btn {
+		width: 100%;
+	}
+	
+	.pi-form-wrapper .pi-form-actions {
+		flex-direction: column;
+	}
+}
 /* ===========================
 	Responsive Adjustments
 	=========================== */

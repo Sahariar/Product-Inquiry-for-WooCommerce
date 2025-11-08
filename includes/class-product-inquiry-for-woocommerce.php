@@ -181,14 +181,58 @@ class Product_Inquiry {
 		<?php
 	}
 
-	/**
-	 * Register Gutenberg blocks.
-	 *
-	 * @since    1.0.0
-	 */
-	public function register_blocks() {
-		register_block_type( plugin_dir_path( __DIR__ ) . 'blocks/pi-form' );
+/**
+ * Register Gutenberg blocks.
+ *
+ * @since    1.0.0
+ */
+/**
+ * Register Gutenberg blocks.
+ *
+ * @since    1.0.0
+ */
+public function register_blocks() {
+	// Only register if block editor is available
+	if ( ! function_exists( 'register_block_type' ) ) {
+		return;
 	}
+	$plugin_file = PRODUCT_INQUIRY_PLUGIN_DIR . 'product-inquiry-for-woocommerce.php';
+	// Register block editor script
+	$script_registered = wp_register_script(
+		'pi-inquiry-form-block-editor',
+		plugins_url( 'blocks/product-inquiry-for-woocommerce-form/index.js', $plugin_file ),
+		array(
+			'wp-blocks',
+			'wp-element',
+			'wp-i18n',
+			'wp-block-editor',
+			'wp-components',
+			'wp-api-fetch',
+			'wp-data',
+		),
+		$this->version,
+		true
+	);
+	// Register block editor style
+	$style_registered = wp_register_style(
+		'pi-inquiry-form-block-editor',
+		plugins_url( 'blocks/product-inquiry-for-woocommerce-form/editor.css', $plugin_file ),
+		array( 'wp-edit-blocks' ),
+		$this->version
+	);
+	
+
+	// Register the block
+	$block_path = plugin_dir_path( __DIR__ ) . 'blocks/product-inquiry-for-woocommerce-form';
+	
+	$block_registered = register_block_type(
+		$block_path,
+		array(
+			'editor_script' => 'pi-inquiry-form-block-editor',
+			'editor_style'  => 'pi-inquiry-form-block-editor',
+		)
+	);
+}
 
 	public function run() {
 		$this->loader->run();
